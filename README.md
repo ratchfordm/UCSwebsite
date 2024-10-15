@@ -1,29 +1,17 @@
 # Used Curriculm Sale website
 
-## User Views
+The UCS website, is a system that will need to add items into a database, and print barcodes for those items. They need to then be able to be Sold at the UCS, where the system will need to checkout the items, and give a total of what needs to be sold for the items.
 
-### Seller/Standard User
-- Page for inputing items into the system
-- Page for printing out barcodes to label their items
-- Page for viewing their own items/editing them
-- Probably some other stuff (not part of MVP)
+This Project will use HTML, CSS, SQL, CSS, and Javascript. The backend will be built in SQL.
 
-### Checkout System
-- Page for adding items to checkout
-- Page for Checking out/seeing the total
+This project will contain two main directories for the project. The Data_src folder and the web_src folder. The Data_src will include a api and docs folder, along with a sql script to build the database, and a erd model to show what it looks like. 
 
-### Admin View
-- Page for Adding Events
-- Page for Viewing/Editing Events
-- Page for Editing/Removing Items
-- Super Admin Page for adding Admins
-- Super Admin Page for viewing/editing/removing Admins
-- Page for statistics (not part of MVP)
+The API will be a rest api, which will include CRUD methods for each of the different pages in the web_src folder.
 
-By no means is this list exaustive, and will be added on to if needed
+The docs folder will contain things like user stories, and requirements for the project. It will aslo contain any other nessecary documentation.
 
-## Minimum Viable Product
-- Sellers need to be able to login, add items, and print barcodes
-- Checkout system needs to be able to mark items as sold, and calculate totals
-- Admins, need to be able to add events
-- Super Admins need to be able to add admins
+The Web_src folder will have 3 different folders for the 3 different main views in the system. (the subfolders are yet undefined)
+
+The gitignore will make sure that the database credentials are not made public on the repo.
+
+The index.php will redirect you to the login page for the standard user.
