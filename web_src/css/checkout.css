@@ -1,0 +1,12 @@
+body {
+    background-color: lightgrey;
+    text-align: center;
+
+}
+
+#shopping_cart, td, th {
+    width: 25%;
+    border: solid black;
+    margin: 0 auto;
+    border-collapse: collapse;
+}
