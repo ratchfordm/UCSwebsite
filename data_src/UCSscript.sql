@@ -45,7 +45,7 @@ create table UCS_events (
 
 create table items (
 
-	book_id INT not null auto_increment,
+	item_id INT not null auto_increment,
     user_id INT not null,
     category_id INT not null,
     event_id INT not null,
@@ -58,8 +58,8 @@ create table items (
     donation boolean not null,
     sold boolean not null default 0,
     
-    primary key (book_id),
-    unique index book_id_unique_index (book_id),
+    primary key (item_id),
+    unique index book_id_unique_index (item_id),
     
     constraint user_id_books_fk
     foreign key (user_id)
