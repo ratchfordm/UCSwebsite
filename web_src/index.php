@@ -1,6 +1,5 @@
 <?php
 
-    echo "Epic home page.";
-    echo "<br>Website coming soon!";
+    echo "Epic home page.<br>Website coming soon!";
 
 ?>
