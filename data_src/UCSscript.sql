@@ -47,7 +47,6 @@ create table items (
 
 	book_id INT not null auto_increment,
     user_id INT not null,
-    condition_id INT,
     category_id INT not null,
     event_id INT not null,
     ISBN INT,
@@ -66,9 +65,6 @@ create table items (
     foreign key (user_id)
     references users (user_id),
     
-    constraint condition_id_books_fk
-    foreign key (condition_id)
-    references conditions (condition_id),
     
     constraint category_id_books_fk
     foreign key (category_id)
