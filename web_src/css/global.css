@@ -1,0 +1,15 @@
+*{
+    text-align: center;
+    margin:auto;
+}
+.logoContainer{
+    margin:0px auto 30px auto;
+    padding:20px 0px;
+    
+    background-color: lightblue;
+    display:block;
+}
+.loginLogo{
+    height:250px;
+    width:250px;
+}
