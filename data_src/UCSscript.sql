@@ -25,7 +25,7 @@ create table categories (
 
 );
 
-create table UCS_events (
+create table events (
 
 	event_id INT not null auto_increment,
     event_name varchar(45) not null,
@@ -72,6 +72,6 @@ create table items (
     
     constraint event_id_books_fk
     foreign key (event_id)
-    references UCS_events (event_id)
+    references events (event_id)
 
 );
