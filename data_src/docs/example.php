@@ -12,7 +12,7 @@
 
     echo "SELECT<br><br>";
 
-    $sql = "SELECT * FROM users";
+    $sql = "SELECT * FROM categories";
     $data = $queryDB($sql);
     print_r($data);
 
@@ -20,6 +20,10 @@
     // Send a basic array of values that correspond to the table's columns
 
     echo "<br><br>INSERT<br><br>";
-    $insertInto(["inserted@garbage.net", "one billion eggs", "garrison", "de france", 0], "u");
+
+    $insertInto(["email", "password", "first name", "last name", 0], "u"); // into users
+    $insertInto(["very epic category"], "c"); // into categories
+    // $insertInto([], "e"); // into events NOTE YET WORKING
+    // $insertInto([1234567890000, "title", "author", 1.00, 2012, 100, 0], "i"); // into items NOT YET WORKING
 
 ?>
