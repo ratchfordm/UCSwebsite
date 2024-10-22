@@ -8,12 +8,10 @@
 </head>
 <body>
     <div class='logoContainer'>
-        <img src="../images/AdminLogo.png" class="loginLogo" alt="CHAP UCS Admin">
+        <img src="../images/UCSlogo.png" class="loginLogo" alt="CHAP UCS">
     </div>
     <h2>Login</h2>
-    <form action="./authenticate.php">
-        
-        
+    <form action="./authenticate.php" method="post">
         <label for="username">Username:</label><br>
         <input type="text" id="username" name="username"><br><br>
         <label for="pass">Password:</label><br>
@@ -22,6 +20,6 @@
     </form>
 </body>
 <?php
-require_once "../footer.php";
+    require_once "../footer.php";
 ?>
 </html>
