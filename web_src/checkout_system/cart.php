@@ -22,27 +22,7 @@
         </thead>
 
         <!-- Table Body -->
-        <tbody>
-
-            <?php
-                // accessing the database
-                require_once "../../data_src/db_config.php";
-
-                mysql_select_db("db") or die;
-                $results = mysql_query("SELECT item_id, title, price FROM items");
-                while($row = mysql_fetch_array($results)) {
-            ?>
-                <!-- TODO: only update table with scanned items -->
-                <tr>
-                    <td><?php echo $row['item_id']?></td>
-                    <td><?php echo $row['title']?></td>
-                    <td><?php echo $row['price']?></td>
-                </tr>
-
-            <?php
-                }
-            ?>
-        </tbody>
+        <tbody id="cartItems"></tbody>
 
     </table>    
 
