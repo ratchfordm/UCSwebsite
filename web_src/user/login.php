@@ -11,11 +11,11 @@
         <img src="../images/UCSlogo.png" class="loginLogo" alt="CHAP UCS">
     </div>
     <h2>Login</h2>
-    <form action="./authenticate.php" method="post">
-        <label for="username">Username:</label><br>
-        <input type="text" id="username" name="username"><br><br>
-        <label for="pass">Password:</label><br>
-        <input type="password" id="pass" name="pass"><br><br>
+    <form action="authenticate.php" method="post">
+        <label for="user_email">Email:</label><br>
+        <input type="text" id="user_email" name="user_email" required><br><br>
+        <label for="user_password">Password:</label><br>
+        <input type="password" id="user_password" name="user_password" required><br><br>
         <input type="submit" value="Submit">
     </form>
 </body>
