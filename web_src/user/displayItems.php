@@ -10,6 +10,7 @@
 </head>
 <body>
     <?php
+    session_start();
     require_once "../navbar.php";
     ini_set('display_errors', '1');
     ini_set('display_startup_errors', '1');
@@ -33,6 +34,7 @@
             </tr>
         </thead>
         <?php
+            
             require_once "../../data_src/api/user/read.php";
             //print_r($data);
             for($i=0;$i<sizeof($data);$i++){

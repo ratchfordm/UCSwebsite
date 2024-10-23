@@ -2,6 +2,25 @@
     text-align: center;
     margin:auto;
 }
+nav{
+    background-color: lightblue;
+    padding:0px;
+    margin-bottom: 30px;
+    display:flex;
+    flex-direction: row;
+}
+nav ul{
+    display:flex;
+    flex-direction: row;
+    list-style-type: none;
+}
+li{
+    padding:40px 0px;
+}
+a{
+    background-color: lightskyblue;
+    padding:40px 20px;
+}
 footer{
     position:absolute;
     bottom: 0px;
@@ -9,6 +28,18 @@ footer{
 }
 input{
     text-align: left;
+}
+
+a:hover{
+    background-color: blue;
+    color:white;
+}
+.noNav{
+    background-color: lightblue;
+    padding:0px;
+}
+.noNav:hover{
+    background-color: lightblue;
 }
 .logoContainer{
     margin:0px auto 30px auto;
@@ -20,4 +51,8 @@ input{
 .loginLogo{
     height:250px;
     width:250px;
+}
+.navLogo{
+    height: 80px;
+    width: 80px;
 }

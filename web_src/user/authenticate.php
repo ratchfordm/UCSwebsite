@@ -6,8 +6,12 @@ session_start();
 require_once "../../data_src/api/login/read.php";
 //print_r($data);
 if(sizeof($data)){
+    //print_r($data);
     $_SESSION['logged_in']=True;
-    $_SESSION['User_email']=$_POST['user_email'];
+    $_SESSION['user_email']=$_POST['user_email'];
+    $_SESSION['first_name']=$data[0]['first_name'];
+    $_SESSION['last_name']=$data[0]['last_name'];
+    $_SESSION['admin_level']=$data[0]['admin_level'];
     header("Location:displayItems.php");
 }
 else
