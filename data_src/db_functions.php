@@ -47,19 +47,19 @@
         } else if (!strcmp(substr($table, 0, 1), "e")) { // Events
             
             $data["event_name"] = substr($info[0], 0, 45);
-            $data["posting_begin_date"] = info[1];
-            $data["posting_end_date"] = info[2];
-            $data["event_begin_date"] = info[3];
-            $data["event_end_date"] = info[4];
+            $data["posting_begin_date"] = $info[1];
+            $data["posting_end_date"] = $info[2];
+            $data["event_begin_date"] = $info[3];
+            $data["event_end_date"] = $info[4];
             $data["operator_code"] = substr($info[5], 0, 8);
-
+            
             $sql = $db->prepare("INSERT INTO events (event_name, posting_begin_date, posting_end_date, event_begin_date, event_end_date, operator_code) VALUES (?, ?, ?, ?, ?, ?);");
             $sql->bindParam(1, $data["event_name"], PDO::PARAM_STR);
-            $sql->bindParam(2, $data["posting_begin_date"]);
-            $sql->bindParam(3, $data["posting_end_date"]);
-            $sql->bindParam(4, $data["even_begin_date"]);
-            $sql->bindParam(5, $data["event_end_date"]);
-            $sql->bindParam(6, $data["operator_code"]);
+            $sql->bindParam(2, $data["posting_begin_date"], PDO::PARAM_STR);
+            $sql->bindParam(3, $data["posting_end_date"], PDO::PARAM_STR);
+            $sql->bindParam(4, $data["event_begin_date"], PDO::PARAM_STR);
+            $sql->bindParam(5, $data["event_end_date"], PDO::PARAM_STR);
+            $sql->bindParam(6, $data["operator_code"], PDO::PARAM_STR);
 
         } else if (!strcmp(substr($table, 0, 1), "i")) { // Items
 

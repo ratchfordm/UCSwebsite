@@ -7,12 +7,12 @@
     // Note that including db_config is unnecessary; db_functions does that itself
     require_once "../../data_src/db_functions.php";
 
-    // SELECT
+    // SELECT (or literally anything else)
     // Simply send a statement. You must paramaterize the query yourself!
 
     echo "SELECT<br><br>";
 
-    $sql = "SELECT * FROM categories";
+    $sql = "SELECT * FROM events";
     $data = $queryDB($sql);
     print_r($data);
 
@@ -22,9 +22,12 @@
 
     echo "<br><br>INSERT<br><br>";
 
-    $insertInto(["email", "password", "first name", "last name", 0], "u"); // into users
-    $insertInto(["very epic category"], "c"); // into categories
-    // $insertInto([], "e"); // into events NOTE YET WORKING
-    // $insertInto([1234567890000, "title", "author", 1.00, 2012, 100, 0], "i"); // into items NOT YET WORKING
+    // WORKING
+    // $insertInto(["email", "password", "first name", "last name", 0], "u"); // into users
+    // $insertInto(["very epic category"], "c"); // into categories
+    // $insertInto(["gang time", "2024-10-24 08:00:00", "2024-10-27 17:00:00", "2024-10-28 07:00:00", "2024-11-2 19:00:00", "mcgovern"], "e"); // into events NOTE YET WORKING
+    
+    // NOT WORKING YET
+    // $insertInto([1234567890000, "title", "author", 1.00, 2012, 100, 0], "i"); // into items
 
 ?>
