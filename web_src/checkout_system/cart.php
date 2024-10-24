@@ -79,14 +79,18 @@
         }
         ?>
 
+
         </tbody>
 
     </table>    
+
+    <button id="clearCart">Clear Cart</button>
 
     <div>Ready to Checkout? Review Items <a href="checkout.php" class="button">Here</a></div>
     
     <?php
         require_once "../footer.php";
+
     ?>
 </body>
 </html>

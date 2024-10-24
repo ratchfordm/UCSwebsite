@@ -4,9 +4,15 @@ body {
 
 }
 
-#shopping_cart, td, th {
+/* #shopping_cart, td, th {
     width: 25%;
-    border: solid black;
     margin: 0 auto;
     border-collapse: collapse;
+} */
+
+
+thead th{
+    color:white;
+    background-color: darkblue;
+    border-radius: 20px;
 }
