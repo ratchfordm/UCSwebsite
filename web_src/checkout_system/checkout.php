@@ -21,6 +21,9 @@
 
     <!-- Table to review items before Checking Out -->
 
+    <!-- Set local variable to the cart items array, then display table.
+         Then end the session from the previous page. -->
+
 
     <?php
         require_once "../footer.php";
