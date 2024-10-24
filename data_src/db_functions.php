@@ -4,19 +4,14 @@
 
     $queryDB = function($sql, $type = "s") use ($db) {
         /*
-        Sends a query to the database.
-        Use the type parameter to specify the type of statement (select, insert, etc); defaults to SELECT.
+        Simply sends any query to the database.
         */
 
         $stmt = $db->prepare($sql);
         $stmt->execute();
 
-        if ($type = "s" || !isset($type) || empty($type)) {
-
-            $data = $stmt->fetchAll();
-            return $data;
-
-        } else return "Done.";
+        $data = $stmt->fetchAll();
+        return $data;
 
     };
 

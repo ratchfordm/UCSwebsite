@@ -18,6 +18,7 @@
 
     // INSERT
     // Send a basic array of values that correspond to the table's columns
+    // Note that because of unique constraints on various tables insert might fail if you don't come up w/ new info
 
     echo "<br><br>INSERT<br><br>";
 
