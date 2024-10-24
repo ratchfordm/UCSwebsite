@@ -42,7 +42,7 @@
                 
                 echo "<td> ".$data[$i]['title']."</td>";
                 echo "<td> ".$data[$i]['qty']."</td>";
-                echo "<td> ".$data[$i]['price']."</td>";
+                echo "<td> $".$data[$i]['price']."</td>";
                 if($data[$i]['donation'])
                     echo "<td>No</td>";
                 else

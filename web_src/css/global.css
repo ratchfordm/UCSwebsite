@@ -20,6 +20,8 @@ li{
 a{
     background-color: lightskyblue;
     padding:40px 20px;
+    text-decoration: none;
+    color:black;
 }
 footer{
     position:absolute;
