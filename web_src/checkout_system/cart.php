@@ -13,9 +13,11 @@
         $sql = "SELECT item_id, title, price FROM items WHERE item_id = ?";
         $data = $queryDB($sql, [$item_id]); // executes the query with the parameter item_id
 
-        $_SESSION['cart_items'][] = $data[0]; // add first item retreived to cart
-        
+        if($data!=null) {
+            $_SESSION['cart_items'][] = $data[0]; // add first item retreived to cart
+        } else print("Item does not exist!");
     }
+
 ?>
 
 <!DOCTYPE html>
@@ -30,10 +32,18 @@
     <link rel="stylesheet" href="../css/user.css">
 
 
+
     <!-- <script src="cart.js"></script> -->
 
 </head>
 <body>
+
+    <nav>
+        <a class='noNav' href='https://conv.chaponline.com'>
+            <img src='../images/UCSlogo.png' class='navLogo' alt='UCS Logo'>
+        </a>
+    
+    </nav>
     
     <h1>Shopping Cart</h1>
     <p>Scan items with the barcode reader to add them to the cart.</p>
