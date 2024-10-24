@@ -4,21 +4,30 @@
     </a>
     <ul>
     <li>
-        <a href="addItem.php">Add Items</a>
+        <a class='navButton' href="addItem.php">Add Items</a>
     </li>
     <li>
-        <a href='displayItems.php'>View Items</a>
+        <a class='navButton' href='displayItems.php'>View Items</a>
     </li>
     <li>
-        <a href='printBarcodes.php'>Print Barcodes</a>
+        <a class='navButton' href='printBarcodes.php'>Print Barcodes</a>
     </li>
-    <li>
-        <a>Account</a>
-    </li>
+    <!--<li>
+        <div class='navButton dropdown'>
+            <a class='dropBtn'>Account</a>
+            <div class='dropdown-content'>
+                <a href=""></a>
+                <a href=""></a>
+                <a href=""></a>
+            </div>
+
+        </div>
+    </li>-->
 <?php
-//session_start();
+session_start();
 if(!$_SESSION['logged_in'])
     header('location:login.php');
+
 ?>
     
 </ul>
