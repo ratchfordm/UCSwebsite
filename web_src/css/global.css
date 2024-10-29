@@ -13,15 +13,51 @@ nav ul{
     display:flex;
     flex-direction: row;
     list-style-type: none;
+    padding:0px;
 }
 li{
     padding:40px 0px;
 }
+.dropdown{
+    position:relative;
+    display: inline-block;
+}
+.dropdown-content{
+    display:none;
+    position:absolute;
+    box-shadow:0px 8px 16px 0px rgba(0,0,0,.2);
+    background-color: white;
+}
+.dropdown-content a{
+    padding:12px 16px;
+    display:block;
+    text-decoration: none;
+}
+.dropdown-content a:hover{
+    background-color: gainsboro;
+}
+.dropBtn{
+    padding:16px;
+    border:none;
+}
+.dropdown:hover .dropdown-content{
+    display:block;
+}
+
 .navButton{
     background-color: lightskyblue;
-    padding:40px 20px;
+    padding:20px 10px 10px 20px;
     text-decoration: none;
     color:black;
+    height:30px
+}
+.navButtonContainer{
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    /*border:solid black;*/
+    height:60px;
+    width:auto;
 }
 footer{
     position:absolute;
