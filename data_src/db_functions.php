@@ -6,8 +6,14 @@
 
     class DatabaseFunctions {
 
-        private static $db = null;
+        public static $db = null;
         
+        function __construct() {
+
+            self::connect();
+
+        }
+
         private static function connect() {
             
             if (self::$db === null) {
@@ -96,7 +102,7 @@
                 $data["user_id"] = $info[0];
                 $data["category_id"] = $info[1];
                 $data["event_id"] = $info[2];
-                $data["ISBN"] = $info[3];
+                $data["isbn"] = $info[3];
                 $data["title"] = substr($info[4], 0, 90);
                 $data["author"] = substr($info[5], 0, 90);
                 $data["price"] = $info[6];
@@ -136,26 +142,136 @@
 
             self::connect();
 
+            $data[0] = $column;
+            $data[1] = $condition;
+
             switch (substr($table, 0, 1)) {
 
                 case "u":
 
-                    $tableu = "users";
+                    switch ($column) {
+
+                        case "user_id":
+                        case "admin_level":
+
+                            $sql = self::$db->prepare("DELETE FROM users WHERE ? = ?;");
+                            $sql->bindParam(1, $column, PDO::PARAM_STR);
+                            $sql->bindParam(2, $condition, PDO::PARAM_INT);
+                            break;
+
+                        case "user_email":
+                        case "user_password":
+                        case "first_name":
+                        case "last_name":
+
+                            $sql = self::$db->prepare("DELETE FROM users WHERE ? LIKE ?;");
+                            $sql->bindParam(1, $column, PDO::PARAM_STR);
+                            $sql->bindParam(2, $condition, PDO::PARAM_STR);
+                            break;
+
+                        default:
+
+                            echo "Invalid column in users.";
+                            return False;
+
+                    }
+
                     break;
 
                 case "c":
 
-                    $tableu = "categories";
+                    switch ($column) {
+
+                        case "category_id":
+
+                            $sql = self::$db->prepare("DELETE FROM categories WHERE ? = ?;");
+                            $sql->bindParam(1, $column, PDO::PARAM_STR);
+                            $sql->bindParam(2, $condition, PDO::PARAM_INT);
+                            break;
+                        
+                        case "category_description":
+
+                            $sql = self::$db->prepare("DELETE FROM categories WHERE ? LIKE ?;");
+                            $sql->bindParam(1, $column, PDO::PARAM_STR);
+                            $sql->bindParam(2, $condition, PDO::PARAM_STR);
+                            break;
+
+                        default:
+
+                            echo "Invalid column in categories.";
+                            return False;
+
+                    }
+
                     break;
 
                 case "e":
 
-                    $tableu = "events";
+                    switch ($column) {
+
+                        case "event_id":
+                        
+                            $sql = self::$db->prepare("DELETE FROM events WHERE ? = ?;");
+                            $sql->bindParam(1, $column, PDO::PARAM_STR);
+                            $sql->bindParam(2, $condition, PDO::PARAM_INT);
+                            break;
+
+                        case "event_name":
+                        case "posting_begin_date":
+                        case "posting_end_date":
+                        case "event_begin_date":
+                        case "event_end_date":
+                        case "operator_code":
+
+                            $sql = self::$db->prepare("DELETE FROM events WHERE ? LIKE ?;");
+                            $sql->bindParam(1, $column, PDO::PARAM_STR);
+                            $sql->bindParam(2, $condition, PDO::PARAM_STR);
+                            break;
+
+                        default:
+
+                            echo "Invalid column in events.";
+                            return False;
+
+                    }
+
                     break;
 
                 case "i":
 
-                    $tableu = "items";
+                    switch ($column) {
+
+                        case "item_id":
+                        case "user_id":
+                        case "category_id":
+                        case "event_id":
+                        case "ISBN":
+                        case "price":
+                        case "year_published":
+                        case "qty":
+                        case "donation":
+                        case "sold":
+
+                            $sql = self::$db->prepare("DELETE FROM items WHERE ? = ?;");
+                            $sql->bindParam(1, $column, PDO::PARAM_STR);
+                            $sql->bindParam(2, $condition, PDO::PARAM_INT);
+                            break;
+                        
+                        case "title":
+                        case "author":
+                        
+                            $sql = self::$db->prepare("DELETE FROM items WHERE ? LIKE ?;");
+                            $sql->bindParam(1, $column, PDO::PARAM_STR);
+                            $sql->bindParam(2, $condition, PDO::PARAM_STR);
+                            break;
+
+                        default:
+
+                            echo "Invalid column in items.";
+                            break;
+
+                    }
+
                     break;
 
                 default:
@@ -164,12 +280,9 @@
                     return False;
 
             }
-
-            $sql = $db->prepare("DELETE FROM " . $tableu . " WHERE ? LIKE ?;");
-            $sql->bindParam(1, $column);
-            $sql->bindParam(2, $condition);
-
-            $sql->execute();
+            echo "<br>";
+            $sql->debugDumpParams();
+            //$sql->execute();
             return True;
 
         }

@@ -18,14 +18,16 @@
 
     echo "<br><br>INSERT<br><i>(Un)comment lines in the code to test this.";
 
-    // $insertInto(["email", "password", "first name", "last name", 0], "u"); // into users
-    // $insertInto(["very epic category"], "c"); // into categories
-    // $insertInto(["gang time", "2024-10-24 08:00:00", "2024-10-27 17:00:00", "2024-10-28 07:00:00", "2024-11-2 19:00:00", "mcgovern"], "e"); // into events NOTE YET WORKING
+    // $functions->insertInto(["email", "password", "first name", "last name", 0], "u"); // into users
+    // $functions->insertInto(["fire category"], "c"); // into categories
+    // $functions->insertInto(["gang time", "2024-10-24 08:00:00", "2024-10-27 17:00:00", "2024-10-28 07:00:00", "2024-11-2 19:00:00", "mcgovern"], "e"); // into events NOTE YET WORKING
     // $functions->insertInto([3, 0, 1, 1234567890000, "title", "author", 1.00, 2012, 100, True], "i"); // into items
 
     // DELETE
     // Send a column and a condition to a table
 
     echo "<br><br>DELETE<br><i>(Un)comment lines in the code to test this.";
+
+    // $functions->deleteFrom("i", "title", "testing data");
 
 ?>
