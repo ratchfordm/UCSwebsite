@@ -18,7 +18,7 @@
             
             if (self::$db === null) {
 
-                require_once "../../data_src/db_config.php";
+                require_once "db_config.php";
 
                 try {
                     

@@ -11,34 +11,34 @@
     require_once "navbar.php";
     ?>
     <h2>Please tell us some information about your item</h2>
-    <form method="post">
+    <form action="../../data_src/api/user/add.php">
         <div>
-            <label for='Author'>Author</label>
-            <input type='text' id='Author'>
+            <label for='isbn'>ISBN</label>
+            <input name='isbn' type='number' id='isbn' min='0' value=''>
         </div>
         <div>
             <label for='title'>Title</label>
-            <input type='text' id='title'>
+            <input name='title' type='text' id='title' required value=''>
         </div>
         <div>
             <label for='author'>Author</label>
-            <input type='text' id='author'>
+            <input name='author' type='text' id='author' value=''>
         </div>
         <div>
             <label for='price'>Price</label>
-            <input type='number' id='price'>
+            <input name='price' type='number' id='price' required value='' step='.01'>
         </div>
         <div>
             <label for='year'>Year Published</label>
-            <input type='number' id='year'>
+            <input name='year' type='number' id='year' min='0' value=''>
         </div>
         <div>
             <label for='qty'>quantity</label>
-            <input type='number' id='qty'>
+            <input name='qty' type='number' id='qty' min='1' required value='1'>
         </div>
         <div>
             <label for='donation'>Pick up after UCS?</label>
-            <input type='checkbox' id='donation'>
+            <input name='donation' type='checkbox' id='donation'>
         </div>
         <div>
             <span>Category Drop down</span>
