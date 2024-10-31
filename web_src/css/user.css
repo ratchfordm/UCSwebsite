@@ -12,3 +12,6 @@ thead td{
     background-color: darkblue;
     border-radius: 20px;
 }
+form div{
+    margin:20px 0px;
+}
