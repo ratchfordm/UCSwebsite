@@ -15,10 +15,22 @@
 
         if($data!=null) {
             $_SESSION['cart_items'][] = $data[0]; // add first item retreived to cart
-        } else print("Item does not exist!");
-    }
+        
+            echo "<script>
+                document.getElementById('itemExist').innerHTML = '';
+            </script>";
 
-?>
+        } else {
+        
+            echo "<script>
+                document.getElementById('itemExist').innerHTML = 'item doesnt exist';
+            </script>";
+
+        }
+    
+    }
+    ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -33,7 +45,7 @@
 
 
 
-    <!-- <script src="cart.js"></script> -->
+    <script src="cart.js"></script>
 
 </head>
 <body>
@@ -82,9 +94,12 @@
 
         </tbody>
 
-    </table>    
+    </table>   
 
-    <button id="clearCart">Clear Cart</button>
+    <div id="itemExist"></div>
+
+    <a href="clearCart.php" class="button">Clear Cart</a>
+    
 
     <div>Ready to Checkout? Review Items <a href="checkout.php" class="button">Here</a></div>
     
