@@ -1,6 +1,8 @@
 <?php
 session_start();
-session_destroy();
+
+
+$_SESSION['cart_items'] = null;
 
 header('location:cart.php');
 ?>

@@ -1,6 +1,5 @@
 <?php
-    session_destroy();
-
+    session_start();
     ini_set('display_errors', '1');
     ini_set('display_startup_errors', '1');
     error_reporting(E_ALL);
@@ -14,15 +13,55 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Checkout Page</title>
+
+    <link rel="stylesheet" href="../css/checkout.css">
+    <link rel="stylesheet" href="../css/global.css">
+    <link rel="stylesheet" href="../css/user.css">
 </head>
 <body>
+
+    <nav>
+        <a class='noNav' href='https://conv.chaponline.com'>
+            <img src='../images/UCSlogo.png' class='navLogo' alt='UCS Logo'>
+        </a>
+    
+    </nav>
+    
     <h1>Checkout</h1>
     <p>Review items before checking out</p>
 
     <!-- Table to review items before Checking Out -->
 
-    <!-- Set local variable to the cart items array, then display table.
-         Then end the session from the previous page. -->
+    <table id="shopping_cart">
+        <!-- Table Head -->
+        <thead>
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Name</th>
+                <th scope="col">Price</th>
+            </tr>
+        </thead>
+
+        <!-- Table Body -->
+        <tbody id="cartItems">
+        <?php
+
+           if (isset($_SESSION['cart_items'])) { // see if there are items in the cart array
+            $cartItems = $_SESSION['cart_items']; // set a variable to the array
+                for ($i = 0; $i < count($cartItems); $i++) { // add all items to the table on the page
+                    echo "<tr> 
+                            <td>{$cartItems[$i]['item_id']}</td>
+                            <td>{$cartItems[$i]['title']}</td>
+                            <td>{$cartItems[$i]['price']}</td>
+                        </tr>";
+                }
+
+        }
+        ?>
+        </tbody>
+    </table> 
+    
+    <a href="clearCart.php" class="button">Clear Cart</a>
 
 
     <?php
