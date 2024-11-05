@@ -6,11 +6,15 @@
     <title>Documentation</title>
 </head>
 <body>
-    <h2>Links to the Documentation</h2>
+    <h2 id='top'>Quick Access Links</h2>
     <ul>
         <li>
-            <a href="docs.php#webAPI">Web API</a>
+            <a href="#webAPI">Web API</a>
         </li>
+        <ul>
+            <li><a href="#loginAPI">Login API</a></li>
+            <li><a href="#userAPI">User API</a></li>
+        </ul>
     </ul>
     <h2>-= Database Functions =-</h2>
     <p>There are several premade functions that can be used to interact with the database.</p>
@@ -43,30 +47,75 @@
     <p>Function is still under construction.</p>
 
     <h2 id="webAPI">-= Website API =-</h2>
+    <a href='#top'>Back to top</a>
     <p>
         These files are called by the frontend to access the database, most of them will use the premade 
         functions that John Created. While prepared select statements will be their own connection files, 
         because the standard connection is using unprepared sql statements
     </p>
-    <h3>Login API</h3>
+    <h3 id="loginAPI">Login API</h3>
+    <a href='#top'>Back to top</a>
     <h4>by Asher Wayde</h4>
-    <h3>Read</h3>
+    <h3>Read.php</h3>
+    <strong><p>input($_POST['user_email', 'user_password'])</p> <p>output(global $data[][])</p></strong>
     <p>
-        This function needs to be called by the login system, it takes in the "user_email" and "user_password"
-        from the $_POST data and sends back the results from the database in a variable called $data
+        This file is used by the login system to do basic verification.
+        <p>Inputs:</p>
+        <ul>
+            <li>user_email: <i>String</i> -> the user's email address</li>
+            <li>user_password: <i>String</i> -> the user's password</li>
+        </ul>
+
+        <p>Output:</p>
+        <ul>
+            <li>$data: <i>Matrix</i> -> 1 row from the user table, or a null value</li>
+        </ul>
     </p>
-    <h3>User API</h3>
+    <h3 id="userAPI">User API</h3>
+    <a href='#top'>Back to top</a>
     <h4>by Asher Wayde</h4>
     <h3>Read</h3>
+    <strong>
+        <p>input($_SESSION['user_email'])</p>
+        <p>output(global $data[][])</p>
+    </strong>
     <p>
-        This file grabs the rows connected with the specific account from the "user_email" stored in the session variable
-        and returns them in the variable $data this file uses database support functions from John
+        This file grabs all the rows attached to a user, and provides it to the front end.
+        <p>Input:</p>
+        <ul>
+            <li>user_email: <i>String</i> -> the user's email</li>
+        </ul>
+        <p>Output:</p>
+        <ul>
+            <li>$data: <i>Matrix</i> -> all the rows linked to the user from the items table</li>
+        </ul>
     </p>
     <h3>Add</h3>
+    <strong>
+        <p>input($_SESSION['user_email'], $_GET['isbn','title','author','price','year','qty','donation'])</p>
+        <p>output NONE</p>
+    </strong>
     <p>
-        This file adds one row to the database taking the user_email and getting the correct values from the table
-        to form an item row in the database. It does not currently send any response back from the database.
-        It uses John's database helper functions.
+        this file takes inputs from the frontend and adds one row to the database.
+        <p>Input:</p>
+        <ul>
+            <li>user_email: <i>String</i> -> user's email</li>
+            <li>isbn: <i>Int</i> -> isbn for the item</li>
+            <li>title: <i>String</i> -> title of the item</li>
+            <li>author: <i>String</i> -> the item's author</li>
+            <li>price: <i>Float</i> -> price of the item</li>
+            <li>year: <i>Int</i> -> year published for the item</li>
+            <li>qty: <i>Int</i> -> quantity of the item</li>
+            <li>donation: <i>Boolean</i> -> if item is to be donated afterwards</li>
+
+        </ul>
+        <p>Output:</p>
+        <ul>
+            <li>N/A</li>
+        </ul>
     </p>
+    <?php
+    require_once('../../web_src/footer.php');
+    ?>
 </body>
 </html>
