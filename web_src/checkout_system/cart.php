@@ -35,7 +35,7 @@
                     $_SESSION['cart_items'][] = $data[0]; // if item doesnt exist, add it
                     $message = "";
                 } else {
-                    $message = "Item already in cart."; // else, say item already in cart
+                    $message = "Item already in cart"; // else, say item already in cart
                 }
             } else {
                 $message = "Item doesn't exist"; // else, say item does exist
@@ -55,12 +55,6 @@
 
     <link rel="stylesheet" href="../css/checkout.css">
     <link rel="stylesheet" href="../css/global.css">
-    <link rel="stylesheet" href="../css/user.css">
-
-
-
-    <script src="cart.js"></script>
-
 </head>
 <body>
 
@@ -85,7 +79,7 @@
             <tr>
                 <th scope="col">ID</th>
                 <th scope="col">Name</th>
-                <th scope="col">Price</th>
+                <th scope="col">Price $</th>
             </tr>
         </thead>
 
@@ -102,7 +96,6 @@
                             <td>{$cartItems[$i]['price']}</td>
                         </tr>";
                 }
-
         }
         ?>
 

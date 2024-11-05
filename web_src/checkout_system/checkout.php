@@ -16,7 +16,6 @@
 
     <link rel="stylesheet" href="../css/checkout.css">
     <link rel="stylesheet" href="../css/global.css">
-    <link rel="stylesheet" href="../css/user.css">
 </head>
 <body>
 
@@ -38,7 +37,7 @@
             <tr>
                 <th scope="col">ID</th>
                 <th scope="col">Name</th>
-                <th scope="col">Price</th>
+                <th scope="col">Price $</th>
             </tr>
         </thead>
 
@@ -48,20 +47,26 @@
 
            if (isset($_SESSION['cart_items'])) { // see if there are items in the cart array
             $cartItems = $_SESSION['cart_items']; // set a variable to the array
+            $totalPrice = 0;
                 for ($i = 0; $i < count($cartItems); $i++) { // add all items to the table on the page
                     echo "<tr> 
                             <td>{$cartItems[$i]['item_id']}</td>
                             <td>{$cartItems[$i]['title']}</td>
                             <td>{$cartItems[$i]['price']}</td>
                         </tr>";
+                    $totalPrice += $cartItems[$i]['price'];
                 }
+            
+            
 
         }
         ?>
         </tbody>
     </table> 
+
+    <div id="totalPrice"> Total Price: $<?php echo $totalPrice; ?></div>
     
-    <a href="clearCart.php" class="button">Clear Cart</a>
+    <a href="clearCart.php" class="button">Back to Cart</a>
 
 
     <?php
