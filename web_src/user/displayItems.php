@@ -31,6 +31,12 @@
                 <td>
                     Pick up afterwards?
                 </td>
+                <td>
+                    is it sold?
+                </td>
+                <td>
+                    Delete item
+</td>
             </tr>
         </thead>
         <?php
@@ -40,14 +46,19 @@
             for($i=0;$i<sizeof($data);$i++){
                 echo "<tr>";
                 
-                echo "<td> ".$data[$i]['title']."</td>";
+                echo "<td><a href=item.php?id=".$data[$i]['item_id'].">".$data[$i]['title']."</a></td>";
                 echo "<td> ".$data[$i]['qty']."</td>";
                 echo "<td> $".$data[$i]['price']."</td>";
                 if($data[$i]['donation'])
                     echo "<td>No</td>";
                 else
                     echo "<td>Yes</td>";
-                
+                if($data[$i]['sold'])
+                    echo "<td>Yes</td>";
+                else
+                    echo "<td>No</td>";
+
+                echo "<td><button value='".$data[$i]['item_id']."'>-</button></td>";
                 echo "</tr>";
             }
         ?>
