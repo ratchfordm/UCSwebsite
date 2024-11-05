@@ -6,6 +6,12 @@
     <title>Documentation</title>
 </head>
 <body>
+    <h2>Links to the Documentation</h2>
+    <ul>
+        <li>
+            <a href="docs.php#webAPI">Web API</a>
+        </li>
+    </ul>
     <h2>-= Database Functions =-</h2>
     <p>There are several premade functions that can be used to interact with the database.</p>
     <p>Using these prevents having to reconnect to the actual database every time something is needed, and also reduces technical debt.</p>
@@ -35,5 +41,32 @@
     <h3>deleteFrom($table, $column, $condition)</h3>
     <p>Deletes data from a specified table.</p>
     <p>Function is still under construction.</p>
+
+    <h2 id="webAPI">-= Website API =-</h2>
+    <p>
+        These files are called by the frontend to access the database, most of them will use the premade 
+        functions that John Created. While prepared select statements will be their own connection files, 
+        because the standard connection is using unprepared sql statements
+    </p>
+    <h3>Login API</h3>
+    <h4>by Asher Wayde</h4>
+    <h3>Read</h3>
+    <p>
+        This function needs to be called by the login system, it takes in the "user_email" and "user_password"
+        from the $_POST data and sends back the results from the database in a variable called $data
+    </p>
+    <h3>User API</h3>
+    <h4>by Asher Wayde</h4>
+    <h3>Read</h3>
+    <p>
+        This file grabs the rows connected with the specific account from the "user_email" stored in the session variable
+        and returns them in the variable $data this file uses database support functions from John
+    </p>
+    <h3>Add</h3>
+    <p>
+        This file adds one row to the database taking the user_email and getting the correct values from the table
+        to form an item row in the database. It does not currently send any response back from the database.
+        It uses John's database helper functions.
+    </p>
 </body>
 </html>
