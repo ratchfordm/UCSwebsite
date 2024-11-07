@@ -6,7 +6,7 @@
 
     class DatabaseFunctions {
 
-        public static $db = null;
+        private static $db = null;
         
         function __construct() {
 
@@ -34,6 +34,13 @@
                 }
 
             }
+
+        }
+
+        public static function getDB() {
+
+            self::connect();
+            return self::$db;
 
         }
 
@@ -113,7 +120,7 @@
                 if (isset($info[10])) $data["sold"] = $info[10];
                 else $data["sold"] = 0;
     
-                $sql = self::$db->prepare("INSERT INTO items (user_id, category_id, event_id, ISBN, title, author, price, year_published, qty, donation, sold) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+                $sql = self::$db->prepare("INSERT INTO items (user_id, category_id, event_id, ISBN, title, author, price, year_published, qty, donation, sold) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);");
                 $sql->bindParam(1, $data["user_id"], PDO::PARAM_INT);
                 $sql->bindParam(2, $data["category_id"], PDO::PARAM_INT);
                 $sql->bindParam(3, $data["event_id"], PDO::PARAM_INT);
@@ -146,22 +153,22 @@
 
                 case "u":
 
-                    $sql = self::$db->prepare("DELETE FROM users WHERE user_id = :id");
+                    $sql = self::$db->prepare("DELETE FROM users WHERE user_id = :id;");
                     break;
                 
                 case "c":
 
-                    $sql = self::$db->prepare("DELETE FROM categories WHERE category_id = :id");
+                    $sql = self::$db->prepare("DELETE FROM categories WHERE category_id = :id;");
                     break;
 
                 case "e":
 
-                    $sql = self::$db->prepare("DELETE FROM events WHERE event_id = :id");
+                    $sql = self::$db->prepare("DELETE FROM events WHERE event_id = :id;");
                     break;
 
                 case "i":
 
-                    $sql = self::$db->prepare("DELETE FROM items WHERE item_id = :id");
+                    $sql = self::$db->prepare("DELETE FROM items WHERE item_id = :id;");
                     break;
 
                 default:
@@ -174,6 +181,105 @@
             $sql->bindValue(":id", $id, PDO::PARAM_INT);
             $sql->execute();
             return True;
+
+        }
+
+        public static function updateTable(int $id, string $col, $value, string $table) {
+
+            self::connect();
+            $valid = False;
+
+            switch (substr($table, 0, 1)) {
+
+                case "u":
+
+                    switch ($col) {
+
+                        case "user_id":
+                        case "user_email":
+                        case "user_password":
+                        case "first_name":
+                        case "last_name":
+                        case "admin_level":
+
+                            $valid = True;
+                            break;
+
+                    }
+
+                    $sql = self::$db->prepare("UPDATE users SET $col = :val WHERE user_id = :id;");
+                    break;
+                
+                case "c":
+
+                    $valid = True;
+                    $sql = self::$db->prepare("UPDATE categories SET category_description = :val WHERE category_id = :id;");
+                    break;
+
+                case "e":
+
+                    switch ($col) {
+
+                        case "event_id":
+                        case "event_name":
+                        case "posting_begin_date":
+                        case "posting_end_date":
+                        case "event_begin_date":
+                        case "event_end_date":
+                        case "operator_code":
+
+                            $valid = True;
+                            break;
+
+                    }
+
+                    $sql = self::$db->prepare("UPDATE events SET $col = :val WHERE event_id = :id;");
+                    break;
+
+                case "i":
+
+                    switch ($col) {
+
+                        case "item_id":
+                        case "user_id":
+                        case "category_id":
+                        case "event_id":
+                        case "ISBN":
+                        case "title":
+                        case "author":
+                        case "price":
+                        case "year_published":
+                        case "qty":
+                        case "donation":
+                        case "sold":
+
+                            $valid = True;
+                            break;
+
+                    }
+
+                    $sql = self::$db->prepare("UPDATE items SET $col = :val WHERE item_id = :id;");
+                    break;
+
+                default:
+
+                    echo "Invalid table.";
+                    return False;
+
+            }
+
+            if ($valid) {
+
+                $sql->bindParam(":val", $value);
+                $sql->bindParam(":id", $id, PDO::PARAM_INT);
+                $sql->execute();
+
+            } else {
+
+                echo "Invalid column: $col";
+                return False;
+
+            }
 
         }
 

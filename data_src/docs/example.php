@@ -8,7 +8,7 @@
 
     echo "SELECT<br><br>";
 
-    $sql = "SELECT * FROM events";
+    $sql = "SELECT * FROM categories";
     $data = $functions->queryDB($sql);
     print_r($data);
 
@@ -29,5 +29,9 @@
     echo "<br><br>DELETE<br><i>(Un)comment lines in the code to test this.";
 
     // $functions->deleteFrom("items", 19);
+
+    echo "<br><br>UPDATE<br><i>(Un)comment lines in the code to test this.";
+
+    // $functions->updateTable(0, "category_description", "when the category :crying:", "categories");
 
 ?>
