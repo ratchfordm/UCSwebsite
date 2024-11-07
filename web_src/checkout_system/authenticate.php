@@ -6,7 +6,7 @@ session_start();
 require_once "../../data_src/api/checkout/read.php";
 
 if(sizeof($data) == 1){
-    $_SESSION['logged_in']=True;
+    $_SESSION['log_in']=True;
     header("Location:cart.php");
 }
 else
