@@ -40,12 +40,23 @@ form div{
 
 
 #totalPrice {
-    margin-left: 25%;
-    width: 50%;
-    background-color: #f4f4f4;
+    margin-left: 35%;
+    width: 30%;
     text-align: center;
     padding: 20px;
-    font-size: 24px;
+    font-size: 25px;
     font-weight: bold;
-    border: 2px solid #000;
+}
+
+.button {
+  font: bold 14px Arial;
+  text-decoration: none;
+  background-color: #EEEEEE;
+  color: #333333;
+  padding: 3px 7px 3px 7px;
+  border: 1px solid #333333;
+}
+
+#itemExist {
+    font-size: 25px;
 }

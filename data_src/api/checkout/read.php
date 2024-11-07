@@ -62,8 +62,17 @@
 
         }
 
-        // echo $sql;
+    
 
     };
+
+    $db=new PDO("mysql:host=$host;dbname=$database",$username,$password);
+    $db->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
+    $sql="select * from events where operator_code=:a";
+    $stmt = $db->prepare($sql);
+  
+    $stmt->bindParam(":a",$_POST['operator_code']);
+    $stmt->execute();
+    $data=$stmt->fetchAll();
 
 ?>

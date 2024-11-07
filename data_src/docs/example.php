@@ -8,7 +8,7 @@
 
     echo "SELECT<br><br>";
 
-    $sql = "SELECT * FROM items";
+    $sql = "SELECT * FROM events";
     $data = $functions->queryDB($sql);
     print_r($data);
 

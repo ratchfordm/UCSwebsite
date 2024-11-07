@@ -35,10 +35,10 @@
                     $_SESSION['cart_items'][] = $data[0]; // if item doesnt exist, add it
                     $message = "";
                 } else {
-                    $message = "Item already in cart"; // else, say item already in cart
+                    $message = "Item already in cart!"; // else, say item already in cart
                 }
             } else {
-                $message = "Item doesn't exist"; // else, say item does exist
+                $message = "Item doesn't exist!"; // else, say item does exist
             }
 
     
@@ -68,10 +68,21 @@
     <h1>Shopping Cart</h1>
     <p>Scan items with the barcode reader to add them to the cart.</p>
 
-    <form method="POST" action="cart.php">
-        <input type="text" id="itemId" name="item_id" placeholder="Item ID" maxlength="7" required>
-        <button type="submit">Add to Cart</button>
+    <script>
+        function checkLength(input) {
+            let maxLength = 7; 
+            if (input.value.length >= maxLength) {
+                document.getElementById("form").submit(); // auto-submit the form
+            }
+        }
+    </script>
+
+    <form method="POST" action="cart.php" id="form">
+        <input type="text" id="itemId" name="item_id" placeholder="Item ID" maxlength="7" oninput="checkLength(this)"  autofocus required>
+        <!-- <button type="submit">Add to Cart</button> -->
     </form>
+
+    
 
     <table id="shopping_cart">
         <!-- Table Head -->

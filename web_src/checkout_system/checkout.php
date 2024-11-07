@@ -44,10 +44,10 @@
         <!-- Table Body -->
         <tbody id="cartItems">
         <?php
-
+            $totalPrice = 0;
            if (isset($_SESSION['cart_items'])) { // see if there are items in the cart array
             $cartItems = $_SESSION['cart_items']; // set a variable to the array
-            $totalPrice = 0;
+            
                 for ($i = 0; $i < count($cartItems); $i++) { // add all items to the table on the page
                     echo "<tr> 
                             <td>{$cartItems[$i]['item_id']}</td>
