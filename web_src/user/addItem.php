@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href='../css/global.css' rel='stylesheet'>
+    <link href='../css/user.css' rel='stylesheet'>
     <title>Add Items</title>
     <!--
     <script src='js/isbnLookup.js'></script>
@@ -14,7 +15,7 @@
     require_once "navbar.php";
     ?>
     <h2>Please tell us some information about your item</h2>
-    <form action="../../data_src/api/user/add.php">
+    <form action="../../data_src/api/user/add.php" class='inputForm'>
         <div>
             <label for='isbn'>ISBN</label>
             <input name='isbn' type='number' id='isbn' min='0' value=''>

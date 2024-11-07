@@ -41,6 +41,16 @@ thead td{
     background-color: darkblue;
     border-radius: 10px;
 }
-form div{
+.inputForm div{
     margin:20px 0px;
+}
+.loginForm{
+    display:flex;
+    flex-direction: column;
+}
+.loginForm div{
+    margin:10px;
+}
+.Err{
+    color:red;
 }
