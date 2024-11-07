@@ -5,6 +5,10 @@ td{
     width:80px;
     word-wrap: break-word;
     vertical-align: text-middle;
+    text-overflow:ellipsis;
+}
+.title{
+    width:150px;
 }
 td a{
     color:black;

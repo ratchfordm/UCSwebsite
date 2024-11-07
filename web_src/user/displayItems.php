@@ -19,7 +19,7 @@
     <table>
         <thead>
             <tr>
-                <td>
+                <td class='title'>
                     Your Items
                 </td>
                 <td>
@@ -35,18 +35,24 @@
                     is it sold?
                 </td>
                 <td>
+                    Category
+                </td>
+                <td>
                     Delete item
-</td>
+                </td>
             </tr>
         </thead>
         <?php
             
             require_once "../../data_src/api/user/read.php";
+            $data=readItems();
             //print_r($data);
             for($i=0;$i<sizeof($data);$i++){
                 echo "<tr>";
-                
-                echo "<td><a href=item.php?id=".$data[$i]['item_id'].">".$data[$i]['title']."</a></td>";
+                if(strlen($data[$i]['title'])>78){
+                    $data[$i]['title']=substr($data[$i]['title'],0,78)."...";
+                }
+                echo "<td class='title'><a href=item.php?id=".$data[$i]['item_id'].">".$data[$i]['title']."</a></td>";
                 echo "<td> ".$data[$i]['qty']."</td>";
                 echo "<td> $".$data[$i]['price']."</td>";
                 if($data[$i]['donation'])
@@ -57,7 +63,7 @@
                     echo "<td>Yes</td>";
                 else
                     echo "<td>No</td>";
-
+                echo "<td>".$data[$i]['category_description']."</td>";
                 echo "<td><button value='".$data[$i]['item_id']."'>-</button></td>";
                 echo "</tr>";
             }

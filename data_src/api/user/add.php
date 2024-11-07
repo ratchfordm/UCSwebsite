@@ -31,6 +31,6 @@ $event_id=$event_id[0]['event_id'];
 
 
 //print_r($_GET);
-$functions->insertInto([$user_id, 0, $event_id, $_GET['isbn'], $_GET['title'], $_GET['author'], $_GET['price'], $_GET['year'],$_GET['qty'],$_GET['donation'] ], "items");
+$functions->insertInto([$user_id, $_GET['category'], $event_id, $_GET['isbn'], $_GET['title'], $_GET['author'], $_GET['price'], $_GET['year'],$_GET['qty'],$_GET['donation'] ], "items");
 header('location:../../../web_src/user/displayItems.php');
 ?>

@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href='../css/global.css' rel='stylesheet'>
     <title>Add Items</title>
+    <!--
+    <script src='js/isbnLookup.js'></script>
+    -->
 </head>
 <body>
     <?php
@@ -41,7 +44,18 @@
             <input name='donation' type='checkbox' id='donation'>
         </div>
         <div>
-            <span>Category Drop down</span>
+            <label for='category'>Category</span>
+            <select name='category' id='category'>
+                <?php
+                require_once "../../data_src/api/user/read.php";
+                $data=readCats();
+                for($i=0;$i<sizeof($data);$i++){
+                    echo "<option value='".$data[$i]['category_id']."'>";
+                    echo $data[$i]['category_description'];
+                    echo "</option>";
+                }
+                ?>
+            </select>
         </div>
         <div>
             <input type='submit' value='Submit'>
