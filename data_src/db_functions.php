@@ -37,7 +37,7 @@
 
         }
 
-        public static function queryDB($stmt) {
+        public static function queryDB(string $stmt) {
             // All-purpose function that sends any statement to the database
             // Statements must be parameterized beforehand!
 
@@ -51,7 +51,7 @@
 
         }
 
-        public static function insertInto($info, $table) {
+        public static function insertInto($info, string $table) {
             // Inserts data given as an array into the specified table
             // Automatically parameterizes queries
             // Automatically enforces length constraints
@@ -138,140 +138,30 @@
     
         }
 
-        public static function deleteFrom($table, $column, $condition) {
+        public static function deleteFrom(int $id, string $table) {
 
             self::connect();
-
-            $data[0] = $column;
-            $data[1] = $condition;
 
             switch (substr($table, 0, 1)) {
 
                 case "u":
 
-                    switch ($column) {
-
-                        case "user_id":
-                        case "admin_level":
-
-                            $sql = self::$db->prepare("DELETE FROM users WHERE ? = ?;");
-                            $sql->bindParam(1, $column, PDO::PARAM_STR);
-                            $sql->bindParam(2, $condition, PDO::PARAM_INT);
-                            break;
-
-                        case "user_email":
-                        case "user_password":
-                        case "first_name":
-                        case "last_name":
-
-                            $sql = self::$db->prepare("DELETE FROM users WHERE ? LIKE ?;");
-                            $sql->bindParam(1, $column, PDO::PARAM_STR);
-                            $sql->bindParam(2, $condition, PDO::PARAM_STR);
-                            break;
-
-                        default:
-
-                            echo "Invalid column in users.";
-                            return False;
-
-                    }
-
+                    $sql = self::$db->prepare("DELETE FROM users WHERE user_id = :id");
                     break;
-
+                
                 case "c":
 
-                    switch ($column) {
-
-                        case "category_id":
-
-                            $sql = self::$db->prepare("DELETE FROM categories WHERE ? = ?;");
-                            $sql->bindParam(1, $column, PDO::PARAM_STR);
-                            $sql->bindParam(2, $condition, PDO::PARAM_INT);
-                            break;
-                        
-                        case "category_description":
-
-                            $sql = self::$db->prepare("DELETE FROM categories WHERE ? LIKE ?;");
-                            $sql->bindParam(1, $column, PDO::PARAM_STR);
-                            $sql->bindParam(2, $condition, PDO::PARAM_STR);
-                            break;
-
-                        default:
-
-                            echo "Invalid column in categories.";
-                            return False;
-
-                    }
-
+                    $sql = self::$db->prepare("DELETE FROM categories WHERE category_id = :id");
                     break;
 
                 case "e":
 
-                    switch ($column) {
-
-                        case "event_id":
-                        
-                            $sql = self::$db->prepare("DELETE FROM events WHERE ? = ?;");
-                            $sql->bindParam(1, $column, PDO::PARAM_STR);
-                            $sql->bindParam(2, $condition, PDO::PARAM_INT);
-                            break;
-
-                        case "event_name":
-                        case "posting_begin_date":
-                        case "posting_end_date":
-                        case "event_begin_date":
-                        case "event_end_date":
-                        case "operator_code":
-
-                            $sql = self::$db->prepare("DELETE FROM events WHERE ? LIKE ?;");
-                            $sql->bindParam(1, $column, PDO::PARAM_STR);
-                            $sql->bindParam(2, $condition, PDO::PARAM_STR);
-                            break;
-
-                        default:
-
-                            echo "Invalid column in events.";
-                            return False;
-
-                    }
-
+                    $sql = self::$db->prepare("DELETE FROM events WHERE event_id = :id");
                     break;
 
                 case "i":
 
-                    switch ($column) {
-
-                        case "item_id":
-                        case "user_id":
-                        case "category_id":
-                        case "event_id":
-                        case "ISBN":
-                        case "price":
-                        case "year_published":
-                        case "qty":
-                        case "donation":
-                        case "sold":
-
-                            $sql = self::$db->prepare("DELETE FROM items WHERE ? = ?;");
-                            $sql->bindParam(1, $column, PDO::PARAM_STR);
-                            $sql->bindParam(2, $condition, PDO::PARAM_INT);
-                            break;
-                        
-                        case "title":
-                        case "author":
-                        
-                            $sql = self::$db->prepare("DELETE FROM items WHERE ? LIKE ?;");
-                            $sql->bindParam(1, $column, PDO::PARAM_STR);
-                            $sql->bindParam(2, $condition, PDO::PARAM_STR);
-                            break;
-
-                        default:
-
-                            echo "Invalid column in items.";
-                            break;
-
-                    }
-
+                    $sql = self::$db->prepare("DELETE FROM items WHERE item_id = :id");
                     break;
 
                 default:
@@ -280,9 +170,9 @@
                     return False;
 
             }
-            echo "<br>";
-            $sql->debugDumpParams();
-            //$sql->execute();
+
+            $sql->bindValue(":id", $id, PDO::PARAM_INT);
+            $sql->execute();
             return True;
 
         }

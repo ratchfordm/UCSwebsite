@@ -36,7 +36,18 @@
     <p>Input(s):</p>
     <ul>
         <li>info : <i>array</i> -> The data to be inserted.</li>
-        <li>table : <i>String</i> -> The name of the target table. Technically only one character is needed, as no table's start with the same letter.</li>
+        <li>table : <i>String</i> -> The name of the target table. Only one character is needed, as no table's start with the same letter.</li>
+    </ul>
+    <p>Output(s):</p>
+    <ul>
+        <li><i>bool</i> -> Returns True if the insert succeeded; False otherwise.</li>
+    </ul>
+    <h3>deleteFrom($table, $id)</h3>
+    <p>Deletes data from a specified table that corresponds to the given ID number.</p>
+    <p>Input(s):</p>
+    <ul>
+        <li>id : <i>int</i> -> The target ID number.</li>
+        <li>table : <i>String</i> -> The name of the target table. Only one character is needed, as no table's start with the same letter.</li>
     </ul>
     <p>Output(s):</p>
     <ul>
