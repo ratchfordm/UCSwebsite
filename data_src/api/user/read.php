@@ -15,4 +15,17 @@ function readCats(){
     return $functions->queryDB($sql);
 }
 
+function readSingleItem($itemID){
+    global $functions;
+    $sql = 
+    "SELECT * FROM items
+    Where item_id=:a";
+    $db=$functions->getDB();
+    $stmt=$db->prepare($sql);
+    $stmt->bindParam(":a",$itemID,PDO::PARAM_INT);
+    $stmt->execute();
+    return ($stmt->fetchall())[0];
+}
+
+
 ?>

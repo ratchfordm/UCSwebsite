@@ -54,3 +54,12 @@ thead td{
 .Err{
     color:red;
 }
+.itemBox{
+    border:1px solid;
+    width:200px;
+    height:100px;
+}
+.itemDisplay{
+    display:flex;
+    flex-wrap:wrap;
+}

@@ -1,9 +1,10 @@
 <?php
     //print_r($_POST);
     require "../../db_functions.php";
-    require "../../db_config.php";
-    $db=new PDO("mysql:host=$host;dbname=$database",$username,$password);
-    $db->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
+    //require "../../db_config.php";
+    //$db=new PDO("mysql:host=$host;dbname=$database",$username,$password);
+    //$db->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
+    $db=$functions->getDB();
     $sql="select * from users where user_email=:a";
     $stmt = $db->prepare($sql);
     $_POST['user_email']=strtolower($_POST['user_email']);

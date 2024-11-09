@@ -9,7 +9,7 @@
     <script src='js/registration.js'></script>
     <?php
     session_start();
-    if($_SESSION['logged_in'])
+    if(array_key_exists('logged_in',$_SESSION)&& $_SESSION['logged_in'])
         header("location:displayItems.php");
     ?>
 </head>
@@ -19,8 +19,7 @@
     </div>
     <h2>Register</h2>
     <?php
-    session_start();
-    if($_SESSION['ErrCode']){
+    if(array_key_exists('ErrCode',$_SESSION)&& $_SESSION['ErrCode']){
         echo "<p class='Err'>".$_SESSION['ErrCode']."</p>";
         $_SESSION['ErrCode']=null;
     }
@@ -48,7 +47,7 @@
             <p id='passErr' class='Err'></p>
         </div>
         <div>
-            <input type="submit" onclick='return passwordsMatch();' value="Submit">
+            <input type="submit" onclick='return passwordsMatch();' value="Register">
         </div>
     </form>
     <p>

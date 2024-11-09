@@ -19,6 +19,11 @@
             <a class='navButton' href='printBarcodes.php'>Print Barcodes</a>
         </div>
     </li>
+    <li>
+        <div class='navButtonContainer'>
+            <a class='navButton' href='instructions.php'>FAQ</a>
+        </div>
+    </li>
     <li >
         <div class='navButtonContainer'>
             <div class='navButton dropdown'>
