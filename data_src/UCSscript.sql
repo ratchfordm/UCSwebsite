@@ -54,7 +54,6 @@ create table items (
     author varchar(90),
     price decimal(65,2) not null,
     year_published INT,
-    qty INT not null default 1,
     donation boolean not null,
     sold boolean not null default 0,
     
@@ -64,7 +63,6 @@ create table items (
     constraint user_id_books_fk
     foreign key (user_id)
     references users (user_id),
-    
     
     constraint category_id_books_fk
     foreign key (category_id)

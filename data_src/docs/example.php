@@ -21,7 +21,7 @@
     // $functions->insertInto(["email", "password", "first name", "last name", 0], "u"); // into users
     // $functions->insertInto(["fire category"], "c"); // into categories
     // $functions->insertInto(["gang time", "2024-10-24 08:00:00", "2024-10-27 17:00:00", "2024-10-28 07:00:00", "2024-11-2 19:00:00", "mcgovern"], "e"); // into events
-    // $functions->insertInto([3, 0, 1, 1234567890000, "title", "author", 1.00, 2012, 100, True], "i"); // into items
+    // $functions->insertInto([3, 0, 1, 1234567890000, "title", "author", 1.00, 2012, True], "i"); // into items
 
     // DELETE
     // Send a column and a condition to a table

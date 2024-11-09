@@ -8,6 +8,13 @@
 <body>
     <h2 id='top'>Quick Access Links</h2>
     <ul>
+        <li><a href="#db_functions">Database Functions</a></li>
+        <ul>
+            <li><a href="#queryDB">queryDB()</a></li>
+            <li><a href="#insertInto">insertInto()</a></li>
+            <li><a href="#deleteFrom">deleteFrom()</a></li>
+            <li><a href="#updateTable">updateTable()</a></li>
+        </ul>
         <li>
             <a href="#webAPI">Web API</a>
         </li>
@@ -16,10 +23,10 @@
             <li><a href="#userAPI">User API</a></li>
         </ul>
     </ul>
-    <h2>-= Database Functions =-</h2>
+    <h2 id="db_functions">-= Database Functions =-</h2>
     <p>There are several premade functions that can be used to interact with the database.</p>
     <p>Using these prevents having to reconnect to the actual database every time something is needed, and also reduces technical debt.</p>
-    <h3>queryDB($stmt)</h3>
+    <h3 "queryDB">queryDB($stmt)</h3>
     <p>Very simple and straigtforward function that takes any SQL statement and executes it.</p>
     <p><i>You must parameterize your statements beforehand!</i></p>
     <p>Input(s):</p>
@@ -30,7 +37,7 @@
     <ul>
         <li><i>array</i> -> Whatever the SQL statement returned.</li>
     </ul>
-    <h3>insertInto($info, $table)</h3>
+    <h3 id="insertInto">insertInto($info, $table)</h3>
     <p>This function takes an array of information and inserts it into the specified table.</p>
     <p>The array's length and content should match the columns of the targeted table.</p>
     <p>Input(s):</p>
@@ -42,7 +49,7 @@
     <ul>
         <li><i>bool</i> -> Returns True if the insert succeeded; False otherwise.</li>
     </ul>
-    <h3>deleteFrom($table, $id)</h3>
+    <h3 id="deleteFrom">deleteFrom($table, $id)</h3>
     <p>Deletes data from a specified table that corresponds to the given ID number.</p>
     <p>Input(s):</p>
     <ul>
@@ -53,10 +60,20 @@
     <ul>
         <li><i>bool</i> -> Returns True if the insert succeeded; False otherwise.</li>
     </ul>
-    <h3>deleteFrom($table, $column, $condition)</h3>
-    <p>Deletes data from a specified table.</p>
-    <p>Function is still under construction.</p>
-
+    <h3 id="updateTable">updateTable($id, $col, $value, $table)</h3>
+    <p>Allows for updating a column's value.<p>
+    <p>Only does one column at a time; use a loop if you have a lot (for col in colNames, for example).</p>
+    <p>Input(s):</p>
+    <ul>
+        <li>id : <i>int</i> -> The target ID number.</li>
+        <li>col : <i>String</i> -> The column that you want to update.</li>
+        <li>value : <i>any</i> -> The value that the chosen column should get set to.</li>
+        <li>table : <i>String</i> -> The name of the target table. Only one character is needed, as no table's start with the same letter.</li>
+    </ul>
+    <p>Output(s):</p>
+    <ul>
+        <li><i>bool</i> -> Returns True if the insert succeeded; False otherwise.</li>
+    </ul>
     <h2 id="webAPI">-= Website API =-</h2>
     <a href='#top'>Back to top</a>
     <p>

@@ -114,13 +114,12 @@
                 $data["author"] = substr($info[5], 0, 90);
                 $data["price"] = $info[6];
                 $data["year_published"] = $info[7];
-                $data["qty"] = $info[8];
-                $data["donation"] = $info[9];
+                $data["donation"] = $info[8];
     
-                if (isset($info[10])) $data["sold"] = $info[10];
+                if (isset($info[9])) $data["sold"] = $info[9];
                 else $data["sold"] = 0;
     
-                $sql = self::$db->prepare("INSERT INTO items (user_id, category_id, event_id, ISBN, title, author, price, year_published, qty, donation, sold) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);");
+                $sql = self::$db->prepare("INSERT INTO items (user_id, category_id, event_id, ISBN, title, author, price, year_published, donation, sold) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);");
                 $sql->bindParam(1, $data["user_id"], PDO::PARAM_INT);
                 $sql->bindParam(2, $data["category_id"], PDO::PARAM_INT);
                 $sql->bindParam(3, $data["event_id"], PDO::PARAM_INT);
@@ -129,9 +128,8 @@
                 $sql->bindParam(6, $data["author"], PDO::PARAM_STR);
                 $sql->bindParam(7, $data["price"]);
                 $sql->bindParam(8, $data["year_published"], PDO::PARAM_INT);
-                $sql->bindParam(9, $data["qty"], PDO::PARAM_INT);
-                $sql->bindParam(10, $data["donation"], PDO::PARAM_BOOL);
-                $sql->bindParam(11, $data["sold"], PDO::PARAM_BOOL);
+                $sql->bindParam(9, $data["donation"], PDO::PARAM_BOOL);
+                $sql->bindParam(10, $data["sold"], PDO::PARAM_BOOL);
     
             } else {
     
@@ -249,7 +247,6 @@
                         case "author":
                         case "price":
                         case "year_published":
-                        case "qty":
                         case "donation":
                         case "sold":
 
