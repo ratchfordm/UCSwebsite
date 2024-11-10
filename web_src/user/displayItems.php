@@ -23,9 +23,6 @@
                     Your Items
                 </td>
                 <td>
-                    Quantity
-                </td>
-                <td>
                     Price
                 </td>
                 <td>
@@ -53,7 +50,6 @@
                     $data[$i]['title']=substr($data[$i]['title'],0,78)."...";
                 }
                 echo "<td class='title'><a href=item.php?id=".$data[$i]['item_id'].">".$data[$i]['title']."</a></td>";
-                echo "<td> ".$data[$i]['qty']."</td>";
                 echo "<td> $".$data[$i]['price']."</td>";
                 if($data[$i]['donation'])
                     echo "<td>No</td>";

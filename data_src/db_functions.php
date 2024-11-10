@@ -119,7 +119,7 @@
                 if (isset($info[9])) $data["sold"] = $info[9];
                 else $data["sold"] = 0;
     
-                $sql = self::$db->prepare("INSERT INTO items (user_id, category_id, event_id, ISBN, title, author, price, year_published, donation, sold) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);");
+                $sql = self::$db->prepare("INSERT INTO items (user_id, category_id, event_id, ISBN, title, author, price, year_published, donation, sold) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?);");
                 $sql->bindParam(1, $data["user_id"], PDO::PARAM_INT);
                 $sql->bindParam(2, $data["category_id"], PDO::PARAM_INT);
                 $sql->bindParam(3, $data["event_id"], PDO::PARAM_INT);

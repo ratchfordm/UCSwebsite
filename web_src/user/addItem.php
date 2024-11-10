@@ -37,10 +37,6 @@
             <input name='year' type='number' id='year' min='0' value=''>
         </div>
         <div>
-            <label for='qty'>quantity</label>
-            <input name='qty' type='number' id='qty' min='1' required value='1'>
-        </div>
-        <div>
             <label for='donation'>Pick up after UCS?</label>
             <input name='donation' type='checkbox' id='donation'>
         </div>
