@@ -8,19 +8,90 @@
 <body>
     <h2 id='top'>Quick Access Links</h2>
     <ul>
-        <li><a href="#db_functions">Database Functions</a></li>
+        <li><a href="#database_schema">Database Schema</a></li>
+        <li><a href="#db_functions">Database Functions</a></li><br>
         <ul>
             <li><a href="#queryDB">queryDB()</a></li>
             <li><a href="#insertInto">insertInto()</a></li>
             <li><a href="#deleteFrom">deleteFrom()</a></li>
             <li><a href="#updateTable">updateTable()</a></li>
-        </ul>
-        <li>
-            <a href="#webAPI">Web API</a>
-        </li>
+        </ul><br>
+        <li><a href="#webAPI">Web API</a></li><br>
         <ul>
             <li><a href="#loginAPI">Login API</a></li>
             <li><a href="#userAPI">User API</a></li>
+        </ul>
+    </ul>
+    <h2 id="database_schema">-= Database Schema =-</h2>
+    <p>This section describes how the database is structured.</p>
+    <h3>Basic Info</h3>
+    <ul>
+        <li><b>Database name: </b>chapweb_ucs</li>
+        <li><b>Database type: </b>MySQL</li>
+        <li><b>Tables:</b></li><br>
+        <ul>
+            <li>Users</li>
+            <li>Categories</i>
+            <li>Events</i>
+            <li>Items</li>
+        </ul><br>
+        <li><b>Structure of users: </b></li><br>
+        <ul>
+            <li>user_id INT NOT NULL AUTO_INCREMENT</li>
+            <li>user_email VARCHAR(45) NOT NULL</li>
+            <li>user_password VARCHAR(45) NOT NULL</li>
+            <li>first_name VARCHAR(45) NOT NULL</li>
+            <li>last_name VARCHAR(45) NOT NULL</li>
+            <li>admin_level INT NOT NULL DEFAULT 0</li>
+        </ul><br>
+        <ul>
+            <li>PRIMARY KEY (user_id)</li>
+            <li>UNIQUE user_email_unique (user_email)</li>
+        </ul><br>
+        <li><b>Structure of categories:</b></li><br>
+        <ul>
+            <li>category INT NOT NULL</li>
+            <li>category_description VARCHAR(30)</li>
+        </ul><br>
+        <ul>
+            <li>PRIMARY KEY (category_id)</li>
+            <li>UNIQUE category_description_unique (category_description)</li>
+        </ul><br>
+        <li><b>Structure of events:</b></li><br>
+        <ul>
+            <li>event_id INT NOT NULL auto_increment</li>
+            <li>event_name VARCHAR(45) NOT NULL</li>
+            <li>posting_begin_date DATETIME NOT NULL</li>
+            <li>posting_end_date DATETIME NOT NULL</li>
+            <li>event_begin_date DATETIME NOT NULL</li>
+            <li>event_end_date DATETIME NOT NULL</li>
+            <li>operator_code VARCHAR(8) NOT NULL</li>
+        </ul><br>
+        <ul>
+            <li>PRIMARY KEY (event_id)</li>
+            <li>CONSTRAINT operator_code_min_length CHECK (length(operator_code) >= 8)</li>
+            <li>UNIQUE event_name_unique (event_name)</li>
+        </ul><br>
+        <li><b>Structure of items:</b></li><br>
+        <ul>
+            <li>item_id INT NOT NULL AUTO_INCREMENT</li>
+            <li>user_id INT NOT NULL</li>
+            <li>category_id INT NOT NULL</li>
+            <li>event_id INT NOT NULL</li>
+            <li>ISBN INT</li>
+            <li>title VARCHAR(90) NOT NULL</li>
+            <li>author VARCHAR(90)</li>
+            <li>price DECIMAL(65, 2) NOT NULL</li>
+            <li>year_published INT</li>
+            <li>donation BOOLEAN NOT NULL</li>
+            <li>sold BOOLEAN NOT NULL DEFAULT 0</li>
+        </ul><br>
+        <ul>
+            <li>PRIMARY KEY (item_id)</li>
+            <li>UNIQUE INDEX book_id_unique_index (item_id)</li>
+            <li>CONSTRAINT user_id_books_fk FOREIGN KEY (user_id) REFERENCES users (user_id)</li>
+            <li>CONSTRAINT category_id_books_fk FOREIGN KEY (category_id) REFERENCES categories (category_id)</li>
+            <li>CONSTRAINT event_id_books_fk FOREIGN KEY (event_id) REFERENCES events (event_id)</li>
         </ul>
     </ul>
     <h2 id="db_functions">-= Database Functions =-</h2>
