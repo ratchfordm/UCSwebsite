@@ -16,7 +16,7 @@
     </li>
     <li>
         <div class='navButtonContainer'>
-            <a class='navButton' href='printBarcodes.php'>Print Barcodes</a>
+            <a class='navButton' href='printBarcodes.php' target="_blank">Print Barcodes</a>
         </div>
     </li>
     <li>

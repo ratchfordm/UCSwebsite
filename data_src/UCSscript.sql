@@ -50,7 +50,7 @@ create table items (
     category_id INT not null,
     event_id INT not null,
     ISBN INT,
-    title varchar(90) not null,
+    title varchar(200) not null,
     author varchar(90),
     price decimal(65,2) not null,
     year_published INT,
@@ -73,3 +73,4 @@ create table items (
     references events (event_id)
 
 );
+ALTER TABLE items AUTO_INCREMENT=1000001;
