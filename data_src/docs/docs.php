@@ -21,6 +21,11 @@
             <li><a href="#loginAPI">Login API</a></li>
             <li><a href="#userAPI">User API</a></li>
         </ul>
+        <li> Checkout System</li>
+            <ul>
+                <li><a href="#cart.php">Cart</a></li>
+                <li><a href="#checkout.php">Checkout</a></li>
+            </ul>
     </ul>
     <h2 id="database_schema">-= Database Schema =-</h2>
     <p>This section describes how the database is structured.</p>
@@ -213,6 +218,60 @@
             <li>N/A</li>
         </ul>
     </p>
+        <h2>Checkout System</h2>
+
+        <h3 id="cart.php">cart.php</h3>
+        <strong>
+            <p>Input: item_id</p>
+            <p>Output: item_id, title, price</p>
+        </strong>
+
+        <p>Input:</p>
+        <ul>
+            <li>item_id: <i>String</i> -> The item ID entered by the user</li>
+        </ul>
+
+        <p>Output:</p>
+        <ul>
+            <li><i>Array</i> -> If the item exists, returns item data including item_id, title, and price</li>
+            <li><i>null</i> -> If no item matches the item_id provided</li>
+        </ul>
+
+        <h5>itemExists($itemId, $cartItems)</h5>
+        <ul>
+            <li>Checks if a specific item (by item_id) is already in the cart to prevent duplicate additions</li>
+            <li><strong>Inputs</strong>:
+                <ul>
+                    <li>$itemId: <i>Int</i> -> The ID of the item to be checked.</li>
+                    <li>$cartItems: <i>Array</i> -> The list of items currently in the cart</li>
+                </ul>
+            </li>
+            <li><strong>Output</strong>: Returns true if the item exists, false otherwise</li>
+        </ul>
+
+        <h3 id="checkout.php">checkout.php</h3>
+        <strong>
+            <p>Output: item_id, title, price, total price</p>
+        </strong>
+
+        <p>Input:</p>
+        <ul>
+            <li>N/A</li>
+        </ul>
+
+        <p>Output:</p>
+        <ul>
+            <li><i>Array</i> -> Returns item data including item_id, title, price, and totalPrice</li>
+            <li>For every row that is made, the price is added to totalPrice. Then displayed below the table.</li>
+        </ul>
+
+        
+
+
+    <p>
+    </p>
+
+
     <?php
     require_once('../../web_src/footer.php');
     ?>

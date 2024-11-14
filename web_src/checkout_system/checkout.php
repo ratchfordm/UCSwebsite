@@ -66,8 +66,10 @@
         </tbody>
     </table> 
 
+    <!-- display the total price to the user -->
     <div id="totalPrice"> Total Price: $<?php echo $totalPrice; ?></div>
-    
+
+    <!-- button to go back to the cart -->
     <a href="clearCart.php" class="button">Back to Cart</a>
 
 
