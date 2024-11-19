@@ -24,7 +24,7 @@
 
             $item_id = $_POST['item_id']; // set variable item_id with item id from form
 
-            $sql = "SELECT item_id, title, price FROM items WHERE item_id = ?";
+            $sql = "SELECT item_id, title, price, sold FROM items WHERE sold = 0 AND item_id = ?";
             $data = $queryDB($sql, [$item_id]); // executes the query with the parameter item_id
 
             if ($data != null) {
@@ -121,7 +121,7 @@
     <a href="clearCart.php" class="button">Clear Cart</a>
     
 
-    <div>Ready to Checkout? Review Items <a href="checkout.php" class="button">Here</a></div>
+    <div><a href="checkout.php" class="button">Checkout HERE</a></div>
     
     <?php
         require_once "../footer.php";

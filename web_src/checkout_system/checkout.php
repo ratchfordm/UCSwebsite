@@ -7,6 +7,7 @@
     error_reporting(E_ALL);
 
     require_once "../../data_src/api/checkout/read.php";
+
 ?>
 
 <!DOCTYPE html>
@@ -46,18 +47,24 @@
         <!-- Table Body -->
         <tbody id="cartItems">
         <?php
+
             $totalPrice = 0;
            if (isset($_SESSION['cart_items'])) { // see if there are items in the cart array
             $cartItems = $_SESSION['cart_items']; // set a variable to the array
-            
+
                 for ($i = 0; $i < count($cartItems); $i++) { // add all items to the table on the page
+
                     echo "<tr> 
                             <td>{$cartItems[$i]['item_id']}</td>
                             <td>{$cartItems[$i]['title']}</td>
                             <td>{$cartItems[$i]['price']}</td>
                         </tr>";
                     $totalPrice += $cartItems[$i]['price'];
-                }
+                    $sql = "UPDATE items SET sold = 1 WHERE item_id = ?";
+                    $stmt = $db->prepare($sql);
+                    $stmt->execute([$cartItems[$i]['item_id']]);
+
+            }
             
             
 
