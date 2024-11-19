@@ -28,7 +28,7 @@
 
     echo "<br><br>DELETE<br><i>(Un)comment lines in the code to test this.";
 
-    // $functions->deleteFrom("items", 19);
+    // $functions->deleteFrom(1003, "users");
 
     echo "<br><br>UPDATE<br><i>(Un)comment lines in the code to test this.";
 

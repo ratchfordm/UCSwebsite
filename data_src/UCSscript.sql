@@ -17,7 +17,7 @@ create table users (
 
 create table categories (
 
-	category_id INT not null,
+	category_id INT not null auto_increment,
     category_description varchar(30),
     
     primary key (category_id),

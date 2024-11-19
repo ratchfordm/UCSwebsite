@@ -8,7 +8,7 @@
 
         private static $db = null;
         
-        function __construct() {
+        private function __construct() {
 
             self::connect();
 
@@ -110,7 +110,7 @@
                 $data["category_id"] = $info[1];
                 $data["event_id"] = $info[2];
                 $data["isbn"] = $info[3];
-                $data["title"] = substr($info[4], 0, 90);
+                $data["title"] = substr($info[4], 0, 200);
                 $data["author"] = substr($info[5], 0, 90);
                 $data["price"] = $info[6];
                 $data["year_published"] = $info[7];
