@@ -9,14 +9,14 @@
     <h2 id='top'>Quick Access Links</h2>
     <ul>
         <li><a href="#database_schema">Database Schema</a></li>
-        <li><a href="#db_functions">Database Functions</a></li><br>
+        <li><a href="#db_functions">Database Functions</a></li>
         <ul>
             <li><a href="#queryDB">queryDB()</a></li>
             <li><a href="#insertInto">insertInto()</a></li>
             <li><a href="#deleteFrom">deleteFrom()</a></li>
             <li><a href="#updateTable">updateTable()</a></li>
-        </ul><br>
-        <li><a href="#webAPI">Web API</a></li><br>
+        </ul>
+        <li><a href="#webAPI">Web API</a></li>
         <ul>
             <li><a href="#loginAPI">Login API</a></li>
             <li><a href="#userAPI">User API</a></li>
@@ -26,6 +26,7 @@
                 <li><a href="#cart.php">Cart</a></li>
                 <li><a href="#checkout.php">Checkout</a></li>
             </ul>
+
     </ul>
     <h2 id="database_schema">-= Database Schema =-</h2>
     <p>This section describes how the database is structured.</p>
@@ -84,7 +85,7 @@
             <li>category_id INT NOT NULL</li>
             <li>event_id INT NOT NULL</li>
             <li>ISBN INT</li>
-            <li>title VARCHAR(90) NOT NULL</li>
+            <li>title VARCHAR(200) NOT NULL</li>
             <li>author VARCHAR(90)</li>
             <li>price DECIMAL(65, 2) NOT NULL</li>
             <li>year_published INT</li>
@@ -100,9 +101,11 @@
         </ul>
     </ul>
     <h2 id="db_functions">-= Database Functions =-</h2>
+    <a href='#top'>Back to top</a>
     <p>There are several premade functions that can be used to interact with the database.</p>
     <p>Using these prevents having to reconnect to the actual database every time something is needed, and also reduces technical debt.</p>
     <h3 "queryDB">queryDB($stmt)</h3>
+    <a href='#top'>Back to top</a>
     <p>Very simple and straigtforward function that takes any SQL statement and executes it.</p>
     <p><i>You must parameterize your statements beforehand!</i></p>
     <p>Input(s):</p>
@@ -114,6 +117,7 @@
         <li><i>array</i> -> Whatever the SQL statement returned.</li>
     </ul>
     <h3 id="insertInto">insertInto($info, $table)</h3>
+    <a href='#top'>Back to top</a>
     <p>This function takes an array of information and inserts it into the specified table.</p>
     <p>The array's length and content should match the columns of the targeted table.</p>
     <p>Input(s):</p>
@@ -126,6 +130,7 @@
         <li><i>bool</i> -> Returns True if the insert succeeded; False otherwise.</li>
     </ul>
     <h3 id="deleteFrom">deleteFrom($table, $id)</h3>
+    <a href='#top'>Back to top</a>
     <p>Deletes data from a specified table that corresponds to the given ID number.</p>
     <p>Input(s):</p>
     <ul>
@@ -137,6 +142,7 @@
         <li><i>bool</i> -> Returns True if the insert succeeded; False otherwise.</li>
     </ul>
     <h3 id="updateTable">updateTable($id, $col, $value, $table)</h3>
+    <a href='#top'>Back to top</a>
     <p>Allows for updating a column's value.<p>
     <p>Only does one column at a time; use a loop if you have a lot (for col in colNames, for example).</p>
     <p>Input(s):</p>
@@ -178,20 +184,49 @@
     <h3 id="userAPI">User API</h3>
     <a href='#top'>Back to top</a>
     <h4>by Asher Wayde</h4>
-    <h3>Read</h3>
+    <h3>Read.php</h3>
+    <h3>readItems()</h3>
     <strong>
         <p>input($_SESSION['user_email'])</p>
-        <p>output(global $data[][])</p>
+        <p>return($data[][])</p>
     </strong>
     <p>
-        This file grabs all the rows attached to a user, and provides it to the front end.
+        This function grabs all the rows attached to a user, and provides it to the front end.
         <p>Input:</p>
         <ul>
             <li>user_email: <i>String</i> -> the user's email</li>
         </ul>
         <p>Output:</p>
         <ul>
-            <li>$data: <i>Matrix</i> -> all the rows linked to the user from the items table</li>
+            <li>data: <i>Matrix</i> -> all the rows linked to the user from the items table</li>
+        </ul>
+    </p>
+    <h3>readCats()</h3>
+    <strong>
+        <p>input()</p>
+        <p>return($data[][])</p>
+    </strong>
+    <p>
+        This function grabs all the categories in the database and returns them
+        <p>Output:</p>
+        <ul>
+            <li>data: <i>Matrix</i> -> all the categories in the database</li>
+        </ul>
+    </p>
+    <h3>readSingleItem()</h3>
+    <strong>
+        <p>Input($itemID)</p>
+        <p>Output($data[])</p>
+    </strong>
+    <p>
+        This function take the item_id of a single item and retrieves it from the database
+        <p>Input:</p>
+        <ul>
+            <li>itemID <i>Int</i> -> the id number of an item</li>
+        </ul>
+        <p>Output:</p>
+        <ul>
+            <li>data <i>Array</i> -> a single row from the database</li>
         </ul>
     </p>
     <h3>Add</h3>

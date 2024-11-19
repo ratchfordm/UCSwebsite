@@ -17,13 +17,25 @@ td a{
 td a:hover{
     color:red;
 }
-td button{
+.delButton{
     height: 80px;
     width:80px;
-    font-size: XXX-large;
     background-color: red;
-    color:white;
     border:transparent;
+}
+.delButton > a{
+    color:white;
+    font-size: XXX-large;
+    padding:17px 34px;
+}
+.content > a{
+    border: 1px solid;
+    padding: 3px 20px;
+    background-color: darkgray;
+    color:white;
+}
+.delButton > a:hover{
+    color:white;
 }
 tr{
     display:flex;
@@ -62,4 +74,24 @@ thead td{
 .itemDisplay{
     display:flex;
     flex-wrap:wrap;
+}
+.modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(254,
+            126,
+            126,
+            0.7);
+    display: none;
+    align-items: center;
+    justify-content: center;
+}
+.content {
+    position: relative;
+    background: white;
+    padding: 1em 2em;
+    border-radius: 4px;
+}
+.modal:target {
+    display: flex;
 }

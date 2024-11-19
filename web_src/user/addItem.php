@@ -15,6 +15,12 @@
     require_once "navbar.php";
     ?>
     <h2>Please tell us some information about your item</h2>
+    <?php
+    if(key_exists('addMsg',$_SESSION)){
+        echo "<p>".$_SESSION['addMsg']."</p>";
+        $_SESSION['addMsg']=null;
+    }
+    ?>
     <form action="../../data_src/api/user/add.php" class='inputForm'>
         <div>
             <label for='isbn'>ISBN</label>

@@ -12,6 +12,7 @@ if(sizeof($data)){
     $_SESSION['first_name']=$data[0]['first_name'];
     $_SESSION['last_name']=$data[0]['last_name'];
     $_SESSION['admin_level']=$data[0]['admin_level'];
+    $_SESSION['user_id']=$data[0]['user_id'];
     header("Location:displayItems.php");
 }
 else

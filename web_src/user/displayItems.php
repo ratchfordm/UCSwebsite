@@ -15,6 +15,12 @@
     ini_set('display_errors', '1');
     ini_set('display_startup_errors', '1');
     error_reporting(E_ALL);
+
+    if(key_exists('deleteMsg',$_SESSION)){
+        echo $_SESSION['deleteMsg']."</p>";
+        $_SESSION['deleteMsg']=null;
+    }
+    
     ?>
     <table>
         <thead>
@@ -60,7 +66,23 @@
                 else
                     echo "<td>No</td>";
                 echo "<td>".$data[$i]['category_description']."</td>";
-                echo "<td><button value='".$data[$i]['item_id']."'>-</button></td>";
+                if($data[$i]['sold'])
+                    echo "<td></td>";
+                else
+                    echo "
+                    <td>
+                        <div class='delButton'>
+                            <a href='#".$data[$i]['item_id']."'>-</a>
+                        </div>
+                        <div id='".$data[$i]['item_id']."' class='modal'>
+                            <div class='content'>
+                                <h4>Are you sure?</h4>
+                                <a href='../../data_src/api/user/delete.php?item_id=".$data[$i]['item_id']."'>yes</a>
+                                <a href='#'>no</a>
+                            </div>
+                        </div>
+                    </td>
+                    ";
                 echo "</tr>";
             }
         ?>

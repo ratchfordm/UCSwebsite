@@ -10,7 +10,9 @@
     <?php
     require_once "navbar.php";
     ?>
-    
+    <p>
+        what?
+    </p>
     <?php
     require_once "../footer.php";
     ?>
