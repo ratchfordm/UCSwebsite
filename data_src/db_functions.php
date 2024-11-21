@@ -8,7 +8,7 @@
 
         private static $db = null;
         
-        private function __construct() {
+        function __construct() {
 
             self::connect();
 
