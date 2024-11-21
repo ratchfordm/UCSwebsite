@@ -60,9 +60,12 @@ nav ul{
     width:auto;
 }
 footer{
+    text-align: center;
+    padding-top:30px;
+    /*
     position:absolute;
     bottom: 0px;
-    left:43%;
+    left:43%;*/
 }
 input{
     text-align: left;

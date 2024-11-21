@@ -1,6 +1,6 @@
 <?php
-require_once "../../data_src/db_config.php";
-$db=new PDO("mysql:host=$host;dbname=$database",$username,$password);
+require_once "../../data_src/db_functions.php";
+$db=$functions->getDB();
 $db->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
 $sql="select * from users where user_email=:a and user_password=:b";
 $stmt = $db->prepare($sql);

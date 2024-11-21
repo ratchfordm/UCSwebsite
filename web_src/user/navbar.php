@@ -30,18 +30,24 @@
                 <a class='dropBtn'>Account</a>
                 <div class='dropdown-content'>
                     <a href="settings.php">settings</a>
-                    <a href="">theme</a>
                     <a href="logout.php">logout</a>
                 </div>
 
             </div>
         </div>
     </li>
+    
 <?php
 session_start();
 if(!$_SESSION['logged_in'])
     header('location:login.php');
 
+    if($_SESSION['admin_level'])
+        echo "<li>
+    <div class='navButtonContainer'>
+            <a class='navButton' href='../admin/console.php'>Admin Console</a>
+        </div>
+    </li>";
 ?>
     
 </ul>

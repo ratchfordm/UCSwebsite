@@ -3,13 +3,15 @@
     Barcode Specifications:
         they must fit on a specific kind of page, its a
     */
+    ini_set('display_errors', '1');
+    ini_set('display_startup_errors', '1');
+    error_reporting(E_ALL);
     session_start();
     require_once "../../data_src/api/user/read.php";
     $data=readItems();
     require "../../data_src/fpdf/fpdf.php";
     $pdf = new FPDF();
-    $pdf->AddPage();
-    $pdf->SetFont('Helvetica','',14);
+    $pdf->SetFont('Helvetica','',10);
     if(sizeof($data)){
         $dataNoSold=[];
         $j=0;
@@ -19,11 +21,25 @@
                 $j++;
             }
         }
-        for($i=0;$i<sizeof($dataNoSold);$i++){
-            $pdf->text(20,15+(60*$i),strtolower(substr($dataNoSold[$i]['title'],0,34)));
-            $pdf->Image('http://localhost/ucswebsite/data_src/barcode.php?codetype=code39&size=50&text='.$dataNoSold[$i]['item_id'].'&print=true',10,20+(60*$i),80,40,'PNG');
-            if($dataNoSold[$i]['donation'])
-                $pdf->text(35,57+(60*$i),'DONATION');
+        $xshift=60;
+        $yshift=60;
+        $pageLength=15;
+        $columns=3;
+        $rows=5;
+        for($i=0;$i<sizeof($dataNoSold)/$columns;$i++){
+            for($j=0;$j<$columns;$j++){
+                if($j+($i*$columns)%$pageLength==0)
+                    $pdf->addPage();
+                if($j+($i*$columns)<sizeof($dataNoSold)){
+                    $pdf->text(15+($xshift*$j),15+($yshift*($i%$rows)),strtolower(substr($dataNoSold[$j+($i*$columns)]['title'],0,34)));
+                    $pdf->Image('http://localhost/ucswebsite/data_src/barcode.php?codetype=code39&size=50&text='.$dataNoSold[$j+($i*$columns)]['item_id'].'&print=true',10+($xshift*$j),20+($yshift*($i%$rows)),60,40,'PNG');
+                    if($dataNoSold[$j+($i*$columns)]['donation']){
+                        $pdf->SetFont('Helvetica','',15);
+                        $pdf->text(20+($xshift*$j),57+($yshift*($i%$rows)),'DONATION');
+                        $pdf->SetFont('Helvetica','',10);
+                    }
+                }
+            }
         }
     }
     else{

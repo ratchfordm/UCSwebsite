@@ -6,7 +6,8 @@ function readItems(){
     $sql = "SELECT * FROM items
     join users using(user_id)
     join categories using(category_id)
-    where user_email='".$_SESSION['user_email']."'";
+    where user_email='".$_SESSION['user_email']."'
+    order by title";
     return $functions->queryDB($sql);
 }
 function readCats(){

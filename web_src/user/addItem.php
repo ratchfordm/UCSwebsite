@@ -6,9 +6,7 @@
     <link href='../css/global.css' rel='stylesheet'>
     <link href='../css/user.css' rel='stylesheet'>
     <title>Add Items</title>
-    <!--
     <script src='js/isbnLookup.js'></script>
-    -->
 </head>
 <body>
     <?php
@@ -26,6 +24,7 @@
             <label for='isbn'>ISBN</label>
             <input name='isbn' type='number' id='isbn' min='0' value=''>
         </div>
+        <p id='apiErr' class='Err'></p>
         <div>
             <label for='title'>Title</label>
             <input name='title' type='text' id='title' required value=''>
@@ -48,10 +47,11 @@
         </div>
         <div>
             <label for='category'>Category</span>
-            <select name='category' id='category'>
+            <select name='category' id='category' required>
                 <?php
                 require_once "../../data_src/api/user/read.php";
                 $data=readCats();
+                
                 for($i=0;$i<sizeof($data);$i++){
                     echo "<option value='".$data[$i]['category_id']."'>";
                     echo $data[$i]['category_description'];
