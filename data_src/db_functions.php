@@ -82,10 +82,10 @@
     
             } else if (!strcmp(substr($table, 0, 1), "c")) { // Categories
     
-                $data["category_descriptions"] = substr($info[0], 0, 30);
+                $data["category_description"] = substr($info[0], 0, 30);
     
                 $sql = self::$db->prepare("INSERT INTO categories (category_description) VALUES (?);");
-                $sql->bindParam(1, $data["category_descriptions"], PDO::PARAM_STR);
+                $sql->bindParam(1, $data["category_description"], PDO::PARAM_STR);
     
             } else if (!strcmp(substr($table, 0, 1), "e")) { // Events
                 
@@ -267,7 +267,7 @@
 
             if ($valid) {
 
-                $sql->bindParam(":val", $value);
+                $sql->bindParam(":val", $value, PDO::PARAM_STR);
                 $sql->bindParam(":id", $id, PDO::PARAM_INT);
                 $sql->execute();
 

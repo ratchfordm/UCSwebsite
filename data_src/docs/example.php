@@ -8,7 +8,7 @@
 
     echo "SELECT<br><br>";
 
-    $sql = "SELECT * FROM categories";
+    $sql = "SELECT * FROM users";
     $data = $functions->queryDB($sql);
     print_r($data);
 

@@ -1,11 +1,9 @@
 <?php
 
     require_once("../../data_src/db_functions.php");
-
     session_start();
-    $override = true;
     
-    if (!($override || (isset($_SESSION["admin_level"]) && $_SESSION["admin_level"] == 2))) header("Location:login.php");
+    if (!(isset($_SESSION["admin_level"]) && $_SESSION["admin_level"] == 2)) header("Location:../user/login.php");
 
     if (array_key_exists("usersButton", $_POST)) $activeTable = "Users";
     else if (array_key_exists("categoriesButton", $_POST)) $activeTable = "Categories";
@@ -71,7 +69,10 @@
 
         if ($activeTable == "None") {
 
-            echo "Please select a table.";
+            echo "Please select a table.
+            <form action='../user/logout.php'>
+                <input type = 'submit' value = 'Log Out'>
+            </form>";
             exit();
 
         } else echo "Active table: $activeTable";
@@ -80,7 +81,7 @@
     <button type='button' class='console_collap'>Search</button>
     <div class='admin_view'>
         <br>
-        <form action = "actions/search.php">
+        <form action = "actions/adminSearch.php">
             <input type = "text" name = "term" id = "term">
             <input type = "submit" name = "search" id = "search" class = "button" value = "Search">
         </form>
@@ -115,12 +116,21 @@
 
                 case "Events":
 
-                    echo "events";
+                    echo "<form action = 'actions/adminInsert.php'>
+                        <input type = 'text' name = 'event_name' id = 'event_name'><br>
+                        <input type = 'date' name = 'post_begin' id = 'post_begin'><br>
+                        <input type = 'date' name = 'post_end' id = 'post_end'><br>
+                        <input type = 'date' name = 'event_begin' id = 'event_begin'><br>
+                        <input type = 'date' name = 'event_end' id = 'event_end'><br>
+                        <input type = 'text' name = 'op_code' id = 'op_code'><br>
+                        <input type = 'submit' value = 'Insert'><br>
+                    </form>";
                     break;
 
                 case "Items":
 
-                    echo "items";
+                    echo "<p>Please insert items here:<p>
+                        <a href = '../../web_src/user/addItem.php'>Add Item</a>";
                     break;
 
             }
@@ -134,7 +144,10 @@
     <button type='button' class='console_collap'>Delete</button>
     <div class='admin_delete'>
         <p>Select a table and a record to remove.</p>
-    </div>
+    </div><br>
+    <form action='../user/logout.php'>
+        <input type = 'submit' value = 'Log Out'>
+    </form>
     <script>
 
         var coll = document.getElementsByClassName('console_collap');
