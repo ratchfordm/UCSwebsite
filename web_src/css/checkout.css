@@ -60,3 +60,7 @@ form div{
 #itemExist {
     font-size: 25px;
 }
+
+#checkout, #clear {
+    margin-top:10px;
+}

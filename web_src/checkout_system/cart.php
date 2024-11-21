@@ -118,10 +118,10 @@
 
     <div id="itemExist"><?php echo $message; ?></div>
 
-    <a href="clearCart.php" class="button">Clear Cart</a>
+    <div id="clear"><a href="clearCart.php" class="button">Clear Cart</a></div>
     
 
-    <div><a href="checkout.php" class="button">Checkout HERE</a></div>
+    <div id="checkout"><a href="checkout.php" class="button">Checkout HERE</a></div>
     
     <?php
         require_once "../footer.php";
