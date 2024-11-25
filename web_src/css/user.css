@@ -95,3 +95,8 @@ thead td{
 .modal:target {
     display: flex;
 }
+.req {
+    color:red;
+    vertical-align: super;
+    font-size: small;
+}

@@ -20,33 +20,77 @@
     }
     ?>
     <form action="../../data_src/api/user/add.php" class='inputForm'>
+        
         <div>
             <label for='isbn'>ISBN</label>
             <input name='isbn' type='number' id='isbn' min='0' value=''>
+            <div class='info'>
+                <img src='../images/infoBubble.png' alt='i' class='infoIcon'>
+                <span class='infoText'>
+                    The ISBN or International Book Seller Number, is a 10 or 13 digit code
+                    on the back of your book, usually next to a barcode. It is not nessecary to input this
+                    number, but putting it in, will autofill the author and the year published.
+                </span>
+            </div>   
         </div>
         <p id='apiErr' class='Err'></p>
         <div>
-            <label for='title'>Title</label>
+            <label for='title' >Title <span class='req'>*</span></label>
             <input name='title' type='text' id='title' required value=''>
+            <div class='info'>
+                <img src='../images/infoBubble.png' alt='i' class='infoIcon'>
+                <span class='infoText'>
+                    Either the author of the book, or the title of the books
+                    or the title of the items.
+                </span>
+            </div>
         </div>
         <div>
             <label for='author'>Author</label>
             <input name='author' type='text' id='author' value=''>
+            <div class='info'>
+                <img src='../images/infoBubble.png' alt='i' class='infoIcon'>
+                <span class='infoText'>
+                    The author of the item, This is a book specific attribute, and not required for bundles or
+                    other items
+                </span>
+            </div>
         </div>
         <div>
-            <label for='price'>Price</label>
+            <label for='price'>Price <span class='req'>*</span></label>
             <input name='price' type='number' id='price' required value='' step='.01'>
+            <div class='info'>
+                <img src='../images/infoBubble.png' alt='i' class='infoIcon'>
+                <span class='infoText'>
+                    The price of the item. only put in numbers, as the $ is not allowed
+                    you can either put in dollars and sense, or just dollars.
+                </span>
+            </div>
         </div>
         <div>
             <label for='year'>Year Published</label>
             <input name='year' type='number' id='year' min='0' value=''>
+            <div class='info'>
+                <img src='../images/infoBubble.png' alt='i' class='infoIcon'>
+                <span class='infoText'>
+                    This is the year published for the book. 
+                    This shouldn't matter for bundles or other items.
+                </span>
+            </div>
         </div>
         <div>
-            <label for='donation'>Pick up after UCS?</label>
+            <label for='donation'>Pick up after UCS? <span class='req'>*</span></label>
             <input name='donation' type='checkbox' id='donation'>
+            <div class='info'>
+                <img src='../images/infoBubble.png' alt='i' class='infoIcon'>
+                <span class='infoText'>
+                    If you want to donate your Items after UCS and don't wish to take them back
+                    Leave this unchecked, but if you are going to donate this item, check this box
+                </span>
+            </div>
         </div>
         <div>
-            <label for='category'>Category</span>
+            <label for='category'>Category <span class='req'>*</span></span>
             <select name='category' id='category' required>
                 <?php
                 require_once "../../data_src/api/user/read.php";
@@ -59,7 +103,16 @@
                 }
                 ?>
             </select>
+            <div class='info'>
+                <img src='../images/infoBubble.png' alt='i' class='infoIcon'>
+                <span class='infoText'>
+                    This is the category of the item in question. This should be selected for every item.
+                </span>
+            </div>
         </div>
+        <p>
+        <span class='req'>*</span> = Required
+        </p>
         <div>
             <input type='submit' value='Add Item'>
         </div>
