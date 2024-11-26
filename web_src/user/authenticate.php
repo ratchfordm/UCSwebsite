@@ -4,6 +4,7 @@ ini_set('display_startup_errors', '1');
 error_reporting(E_ALL);
 session_start();
 require_once "../../data_src/api/login/read.php";
+$data=getUserWPassword();
 //print_r($data);
 if(sizeof($data)){
     //print_r($data);

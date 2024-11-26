@@ -9,6 +9,19 @@
     session_start();
     if(array_key_exists('logged_in',$_SESSION)&& $_SESSION['logged_in'])
         header("location:displayItems.php");
+    
+    if($_POST['user_email']){
+        $data=getUser($_POST['user_email']);
+        if(sizeof($data)){
+            $randCode=random_int(100000,999999);
+            $_SESSION['Verification_code']=$randCode;
+            mail($_POST['user_email'],'The Code to Reset your email','This is your reset code for your Chap UCS account.'.$randCode);
+        }
+        else
+            echo "The email address submitted: ".$_POST['user_email']." is not registered.";
+    }
+    else
+        echo "No email submitted";
     ?>
 </head>
 <body>
