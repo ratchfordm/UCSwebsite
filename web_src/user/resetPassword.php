@@ -9,7 +9,7 @@
     session_start();
     if(array_key_exists('logged_in',$_SESSION)&& $_SESSION['logged_in'])
         header("location:displayItems.php");
-    
+    require_once "../../data_src/api/login/read.php";
     if($_POST['user_email']){
         $data=getUser($_POST['user_email']);
         if(sizeof($data)){
