@@ -54,7 +54,7 @@
 
         }
     </style>
-    <title>Admin</title>
+    <title>UCS Console</title>
 </head>
 <body>
     <h2>Welcome to the Admin Console!</h2>
@@ -81,11 +81,37 @@
     <button type='button' class='console_collap'>Search</button>
     <div class='admin_view'>
         <br>
-        <form action = "actions/adminSearch.php">
-            <input type = "text" name = "term" id = "term">
-            <input type = "submit" name = "search" id = "search" class = "button" value = "Search">
-        </form>
-        <p>Search <?php echo $activeTable; ?> for a record.</p>
+        <?php
+
+            switch ($activeTable) {
+
+                case "Events":
+
+                    echo "<p>Search by key value:</p>
+                    <form action = 'actions/adminSearch.php'>
+                        <input type = 'text' id = 'term' name = 'term' required><br><br>
+                        <input type = 'submit' value = 'Search'><br>
+                    </form>
+                    <br><p>Search by date:</p>
+                    <form action = 'actions/adminSearchDate.php'>
+                        <input type = 'date' id = 'term' name = 'term' required><br><br>
+                        <input type = 'submit' value = 'Search'><br>
+                    </form><br>";
+
+                    break;
+
+                default:
+
+                    echo "<form action = 'actions/adminSearch.php'>
+                        <input type = 'text' id = 'term' name = 'term' required><br><br>
+                        <input type = 'submit' value = 'Search'><br>
+                    </form><br>";
+
+                    break;
+
+            }
+
+        ?>
     </div>
     <button type='button' class='console_collap'>Insert</button>
     <div class='admin_insert'>
@@ -97,11 +123,15 @@
                 case "Users":
 
                     echo "<form action = 'actions/adminInsert.php'>
-                        <input type = 'email' name = 'email' id = 'email' label = 'Email'><br>
-                        <input type = 'text' name = 'password' id = 'password' label = 'Password'><br>
-                        <input type = 'text' name = 'firstName' id = 'firstName' label = 'First Name'><br>
-                        <input type = 'text' name = 'lastName' id = 'lastName' label = 'Last Name'><br>
-                        <input type = 'range' name = 'level' id = 'level' max = 2 min = 0 step = 1 value = 0 label = 'Admin Level'><br>
+                        Information:<br>
+                        <input type = 'email' name = 'email' id = 'email' placeholder = 'Email' label = 'Email' required><br>
+                        <input type = 'password' name = 'password' id = 'password' placeholder = 'Password' label = 'Password' required>
+                        <input type = 'checkbox' onclick = 'passVisibility()'><br>
+                        <input type = 'text' name = 'firstName' id = 'firstName' placeholder = 'First Name' label = 'First Name' required><br>
+                        <input type = 'text' name = 'lastName' id = 'lastName' placeholder = 'Last Name' label = 'Last Name' required><br><br>
+                        Admin Level:<br>
+                        <input type = 'range' name = 'level' id = 'level' max = 2 min = 0 step = 1 value = 0 label = 'Admin Level' oninput = 'lvlTxt()'>
+                        <p style = 'display:inline' id = 'adLvlTxt'>0</p><br>
                         <input type = 'submit' value = 'Insert'><br>
                     </form>";
                     break;
@@ -109,7 +139,7 @@
                 case "Categories":
 
                     echo "<form action = 'actions/adminInsert.php'>
-                        <input type = 'text' name = 'desc' id = 'desc'><br>
+                        <input type = 'text' name = 'desc' id = 'desc' placeholder = 'Description' label = 'Description' required><br><br>
                         <input type = 'submit' value = 'Insert'><br>
                     </form>";
                     break;
@@ -117,12 +147,12 @@
                 case "Events":
 
                     echo "<form action = 'actions/adminInsert.php'>
-                        <input type = 'text' name = 'event_name' id = 'event_name'><br>
-                        <input type = 'date' name = 'post_begin' id = 'post_begin'><br>
-                        <input type = 'date' name = 'post_end' id = 'post_end'><br>
-                        <input type = 'date' name = 'event_begin' id = 'event_begin'><br>
-                        <input type = 'date' name = 'event_end' id = 'event_end'><br>
-                        <input type = 'text' name = 'op_code' id = 'op_code'><br>
+                        <input type = 'text' name = 'event_name' id = 'event_name' placeholder = 'Name' label = 'Name' required><br>
+                        <input type = 'date' name = 'post_begin' id = 'post_begin' placeholder = '' label = '' required><br>
+                        <input type = 'date' name = 'post_end' id = 'post_end' placeholder = '' label = '' required><br>
+                        <input type = 'date' name = 'event_begin' id = 'event_begin' placeholder = '' label = '' required><br>
+                        <input type = 'date' name = 'event_end' id = 'event_end' placeholder = '' label = '' required><br>
+                        <input type = 'text' name = 'op_code' id = 'op_code' placeholder = 'Operator Code' label = 'Operator Code' required><br><br>
                         <input type = 'submit' value = 'Insert'><br>
                     </form>";
                     break;
@@ -149,6 +179,44 @@
         <input type = 'submit' value = 'Log Out'>
     </form>
     <script>
+
+        function passVisibility() {
+
+            var input = document.getElementById("password");
+            if (input.type === "password") input.type = "text";
+            else input.type = "password";
+
+        }
+
+        function lvlTxt() {
+
+        var txt = document.getElementById("adLvlTxt");
+
+            switch (parseInt(document.getElementById("level").value)) {
+
+                case 0:
+
+                    txt.innerHTML = "0";
+                    break;
+
+                case 1:
+                    
+                    txt.innerHTML = "1";
+                    break;
+
+                case 2:
+
+                    txt.innerHTML = "2";
+                    break;
+
+                default:
+
+                    txt.innerHTML = document.getElementById("level").value;
+                    break;
+
+            }
+
+        }
 
         var coll = document.getElementsByClassName('console_collap');
 
