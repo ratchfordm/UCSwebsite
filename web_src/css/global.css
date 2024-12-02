@@ -117,3 +117,6 @@ input{
 .info:hover .infoText{
     display:block;
 }
+.Err{
+    color:red;
+}

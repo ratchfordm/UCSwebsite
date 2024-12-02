@@ -17,8 +17,10 @@
         header('location:../../../web_src/user/register.php');
     }
     //Insert Time.
-    if($functions->insertInto([$_POST['user_email'],$_POST['user_password'],$_POST['first_name'],$_POST['last_name'],0],'users'))
+    if($functions->insertInto([$_POST['user_email'],$_POST['user_password'],$_POST['first_name'],$_POST['last_name'],0],'users')){
+        $_SESSION['msg']='Registration Sucessful';
         header('location:../../../web_src/user/login.php');
+    }
     else{
         session_start();
         $_SESSION['ErrCode']='Error Adding Account, Please try again later';

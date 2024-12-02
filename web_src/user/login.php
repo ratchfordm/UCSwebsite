@@ -16,6 +16,12 @@
         <img src="../images/UCSlogo.png" class="loginLogo" alt="CHAP UCS">
     </div>
     <h2>Login</h2>
+    <?php
+    if(array_key_exists("msg",$_SESSION)){
+        echo "<p>".$_SESSION['msg']."</p>";
+        $_SESSION['msg']='';
+    }
+    ?>
     <form action="authenticate.php" method="post">
         <label for="user_email">Email:</label><br>
         <input type="email" id="user_email" name="user_email" required><br><br>

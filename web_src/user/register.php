@@ -6,7 +6,7 @@
     <title>Registration Page</title>
     <link href="../css/global.css" rel="stylesheet">
     <link href='../css/user.css' rel='stylesheet'>
-    <script src='js/registration.js'></script>
+    <script src='js/passEnforce.js'></script>
     <?php
     session_start();
     if(array_key_exists('logged_in',$_SESSION)&& $_SESSION['logged_in'])
