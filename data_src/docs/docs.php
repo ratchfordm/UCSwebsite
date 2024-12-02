@@ -6,6 +6,9 @@
     <title>Documentation</title>
 </head>
 <body>
+
+<!-- TABLE OF CONTENTS -->
+
     <h2 id='top'>Quick Access Links</h2>
     <ul>
         <li><a href="#database_schema">Database Schema</a></li>
@@ -15,19 +18,23 @@
             <li><a href="#insertInto">insertInto()</a></li>
             <li><a href="#deleteFrom">deleteFrom()</a></li>
             <li><a href="#updateTable">updateTable()</a></li>
+            <li><a href="#searchDB">searchDB()</a></li>
         </ul>
         <li><a href="#webAPI">Web API</a></li>
         <ul>
             <li><a href="#loginAPI">Login API</a></li>
             <li><a href="#userAPI">User API</a></li>
         </ul>
-        <li> Checkout System</li>
-            <ul>
-                <li><a href="#cart.php">Cart</a></li>
-                <li><a href="#checkout.php">Checkout</a></li>
-            </ul>
-
+        <li>Checkout System</li>
+        <ul>
+            <li><a href="#cart.php">Cart</a></li>
+            <li><a href="#checkout.php">Checkout</a></li>
+        </ul>
+        <li><a href="#session_data">Session Data</a></li>
     </ul>
+
+<!-- DATABASE SCHEMA -->
+
     <h2 id="database_schema">-= Database Schema =-</h2>
     <p>This section describes how the database is structured.</p>
     <h3>Basic Info</h3>
@@ -100,6 +107,9 @@
             <li>CONSTRAINT event_id_books_fk FOREIGN KEY (event_id) REFERENCES events (event_id)</li>
         </ul>
     </ul>
+
+<!-- DATABASE FUNCTIONS -->
+
     <h2 id="db_functions">-= Database Functions =-</h2>
     <a href='#top'>Back to top</a>
     <p>There are several premade functions that can be used to interact with the database.</p>
@@ -156,6 +166,21 @@
     <ul>
         <li><i>bool</i> -> Returns True if the insert succeeded; False otherwise.</li>
     </ul>
+    <h3 id="searchDB">searchDB($term, $table)</h3>
+    <a href='#top'>Back to top</a>
+    <p>Searches the specified table to a specific piece of info.</p>
+    <p>Input(s):</p>
+    <ul>
+        <li>term : <i>any</i> -> The search term.</li>
+        <li>table : <i>String</i> -> The name of the target table. Only one character is needed, as no table's start with the same letter.</li>
+    </ul>
+    <p>Output(s):</p>
+    <ul>
+        <li><i>any</i> -> Returns False if the search encountered an error, otherwise it returns the results.</li>
+    </ul>
+
+<!-- WEBSITE API -->
+
     <h2 id="webAPI">-= Website API =-</h2>
     <a href='#top'>Back to top</a>
     <p>
@@ -299,14 +324,22 @@
             <li><i>Array</i> -> Returns item data including item_id, title, price, and totalPrice</li>
             <li>For every row that is made, the price is added to totalPrice. Then displayed below the table.</li>
         </ul>
-
-        
-
-
     <p>
     </p>
 
+<!-- SESSION DATA -->
 
+    <h2 id = "session_data">-= Session Data =-</h2>
+    <a href='#top'>Back to top</a>
+    <p>An alphabetical list of all potential session data values.</p>
+    <ul>
+        <li>consoleTable : <i>String</i> -> The active table in the admin console.</li>
+        <ul><li>None [Default]</li></ul>
+        <ul><li>Users</li></ul>
+        <ul><li>Categories</li></ul>
+        <ul><li>Events</li></ul>
+        <ul><li>Items</li></ul>
+    </ul>
     <?php
     require_once('../../web_src/footer.php');
     ?>

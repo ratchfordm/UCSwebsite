@@ -43,8 +43,8 @@
 
     if ($table != '!') {
 
-        $responses = $functions->searchDB($_GET["term"], $table);
-        print_r($responses);
+        $worked = $functions->deleteFrom($_GET["deleteID"], $table);
+        if ($worked) echo "Deleted <b>" . $_GET["deleteID"] . "</b> from <b>" . $_SESSION["consoleTable"] . "</b> (if that ID existed).";
 
     }
 

@@ -56,12 +56,14 @@
 
     } catch(PDOException $err) {
 
-        echo "Caught!<br>".$err->getMessage();
+        echo "Caught!<br><br>";
+        print_r($err->errorInfo);
 
     }
 
 ?>
 <body>
+    <br><br>
     <form action = "../console.php">
         <input type="submit" value = "OK">
     </form>

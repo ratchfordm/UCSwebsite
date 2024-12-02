@@ -144,45 +144,58 @@
         }
 
         public static function deleteFrom(int $id, string $table) {
+            // Deletes a row from the specified table via primary key
 
             self::connect();
 
-            switch (substr($table, 0, 1)) {
+            try {
 
-                case "u":
+                switch (substr($table, 0, 1)) {
 
-                    $sql = self::$db->prepare("DELETE FROM users WHERE user_id = :id;");
-                    break;
-                
-                case "c":
+                    case "u":
 
-                    $sql = self::$db->prepare("DELETE FROM categories WHERE category_id = :id;");
-                    break;
+                        $sql = self::$db->prepare("DELETE FROM users WHERE user_id = :id;");
+                        break;
+                    
+                    case "c":
 
-                case "e":
+                        $sql = self::$db->prepare("DELETE FROM categories WHERE category_id = :id;");
+                        break;
 
-                    $sql = self::$db->prepare("DELETE FROM events WHERE event_id = :id;");
-                    break;
+                    case "e":
 
-                case "i":
+                        $sql = self::$db->prepare("DELETE FROM events WHERE event_id = :id;");
+                        break;
 
-                    $sql = self::$db->prepare("DELETE FROM items WHERE item_id = :id;");
-                    break;
+                    case "i":
 
-                default:
+                        $sql = self::$db->prepare("DELETE FROM items WHERE item_id = :id;");
+                        break;
 
-                    echo "Invalid table.";
-                    return False;
+                    default:
+
+                        echo "Invalid table.";
+                        return False;
+
+                }
+
+                $sql->bindValue(":id", $id, PDO::PARAM_INT);
+                $sql->execute();
+
+            } catch(PDOException $err) {
+
+                echo "Caught PDO error! See message:<br><br>";
+                print_r($err->errorInfo());
+                return False;
 
             }
 
-            $sql->bindValue(":id", $id, PDO::PARAM_INT);
-            $sql->execute();
             return True;
 
         }
 
         public static function updateTable(int $id, string $col, $value, string $table) {
+            // Changes a specific piece of information
 
             self::connect();
             $valid = False;
@@ -194,6 +207,10 @@
                     switch ($col) {
 
                         case "user_id":
+
+                            echo "You cannot alter the primary key.<br>";
+                            break;
+
                         case "user_email":
                         case "user_password":
                         case "first_name":
@@ -219,6 +236,10 @@
                     switch ($col) {
 
                         case "event_id":
+
+                            echo "You cannot alter the primary key.<br>";
+                            break;
+
                         case "event_name":
                         case "posting_begin_date":
                         case "posting_end_date":
@@ -239,6 +260,10 @@
                     switch ($col) {
 
                         case "item_id":
+
+                            echo "You cannot alter the primary key.<br>";
+                            break;
+
                         case "user_id":
                         case "category_id":
                         case "event_id":
@@ -277,6 +302,116 @@
                 return False;
 
             }
+
+            return True;
+
+        }
+
+        public static function searchDB(string $term, string $table) {
+            // Search the database for a specific piece of information
+            // Note that the following MUST be in the loop for some reason
+            //    $response = $sql->fetchAll();
+            //    array_push($responses, [$response]);
+
+            self::connect();
+            $responses = [];
+
+            switch (strtolower(substr($table, 0, 1))) {
+
+                case "u":
+
+                    $target = "users";
+
+                    if (is_numeric($term)) $cols = ["user_id", "admin_level"];
+                    else {
+
+                        $cols = ["user_email", "user_password", "first_name", "last_name"];
+                        $term = '%' . $term . '%';
+
+                    }
+
+                    break;
+
+                case "c":
+
+                    $target = "categories";
+
+                    if (is_numeric($term)) $cols = ["category_id"];
+                    else {
+
+                        $cols = ["category_description"];
+                        $term = '%' . $term . '%';
+
+                    }
+
+                    break;
+
+                case "e":
+
+                    $target = "events";
+
+                    if (is_numeric($term)) $cols = ["event_id"];
+                    else {
+
+                        $cols = ["event_name", "posting_begin_date", "posting_end_date", "event_begin_date", "event_end_date", "operator_code"];
+                        $term = '%' . $term . '%';
+
+                    }
+
+                    break;
+
+                case "i":
+
+                    $target = "items";
+
+                    if (is_numeric($term)) $cols = ["item_id", "user_id", "category_id", "event_id", "ISBN", "price", "year_published"];
+                    else {
+
+                        $cols = ["title", "author"];
+                        $term = '%' . $term . '%';
+
+                    }
+
+                    break;
+
+                default:
+
+                    return False;
+
+            }
+
+            foreach ($cols as $col) {
+
+                try {
+
+                    if (is_numeric($term)) {
+
+                        $sql = self::$db->prepare("SELECT * FROM $target WHERE $col = ?");
+                        $sql->bindParam(1, $term, PDO::PARAM_INT);
+
+                    } else {
+
+                        $sql = self::$db->prepare("SELECT * FROM $target WHERE $col LIKE ?");
+                        $sql->bindParam(1, $term, PDO::PARAM_STR);
+
+                    }
+                    
+                    $sql->execute();
+
+                } catch(PDOException $err) {
+
+                    echo "Caught PDO error! See message:<br><br>";
+                    print_r($err->errorInfo());
+                    return False;
+
+                }
+
+                $response = $sql->fetchAll();
+                array_push($responses, $response);
+
+            }
+
+            return $responses;
 
         }
 

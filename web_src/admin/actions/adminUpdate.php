@@ -43,8 +43,9 @@
 
     if ($table != '!') {
 
-        $responses = $functions->searchDB($_GET["term"], $table);
-        print_r($responses);
+        echo "idk if everything on console.php works yet, so i have this turned off :)";
+        // $worked = $functions->updateTable($_GET["updateID"], $_GET["updateCol"], $_GET["updateVal"], $table);
+        // if ($worked) echo "Set the value of <b>" . $_GET["updateCol"] . "</b> to <b>" . $_GET["updateVal"] . "</b> for <b>" . $_SESSION["consoleTable"] . "</b> ID number <b>" . $_GET["updateID"] . "</b>.";
 
     }
 
