@@ -109,7 +109,7 @@
                 $data["user_id"] = $info[0];
                 $data["category_id"] = $info[1];
                 $data["event_id"] = $info[2];
-                $data["isbn"] = $info[3];
+                $data["isbn"] = substr($info[3], 0, 13);
                 $data["title"] = substr($info[4], 0, 200);
                 $data["author"] = substr($info[5], 0, 90);
                 $data["price"] = $info[6];
@@ -119,11 +119,11 @@
                 if (isset($info[9])) $data["sold"] = $info[9];
                 else $data["sold"] = 0;
     
-                $sql = self::$db->prepare("INSERT INTO items (user_id, category_id, event_id, ISBN, title, author, price, year_published, donation, sold) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?);");
+                $sql = self::$db->prepare("INSERT INTO items (user_id, category_id, event_id, isbn, title, author, price, year_published, donation, sold) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?);");
                 $sql->bindParam(1, $data["user_id"], PDO::PARAM_INT);
                 $sql->bindParam(2, $data["category_id"], PDO::PARAM_INT);
                 $sql->bindParam(3, $data["event_id"], PDO::PARAM_INT);
-                $sql->bindParam(4, $data["ISBN"], PDO::PARAM_INT);
+                $sql->bindParam(4, $data["isbn"], PDO::PARAM_STR);
                 $sql->bindParam(5, $data["title"], PDO::PARAM_STR);
                 $sql->bindParam(6, $data["author"], PDO::PARAM_STR);
                 $sql->bindParam(7, $data["price"]);
@@ -267,7 +267,7 @@
                         case "user_id":
                         case "category_id":
                         case "event_id":
-                        case "ISBN":
+                        case "isbn":
                         case "title":
                         case "author":
                         case "price":
@@ -364,10 +364,10 @@
 
                     $target = "items";
 
-                    if (is_numeric($term)) $cols = ["item_id", "user_id", "category_id", "event_id", "ISBN", "price", "year_published"];
+                    if (is_numeric($term)) $cols = ["item_id", "user_id", "category_id", "event_id", "price", "year_published"];
                     else {
 
-                        $cols = ["title", "author"];
+                        $cols = ["isbn", "title", "author"];
                         $term = '%' . $term . '%';
 
                     }

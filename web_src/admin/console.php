@@ -1,7 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link href='../css/global.css' rel='stylesheet'>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        .tables {
+
+            background-color: white;
+
+        }
+        .console_select {
+
+            cursor: pointer;
+
+        }
+        .console_collap {
+
+            background-color: #777;
+            color: white;
+            cursor: pointer;
+            padding: 18px;
+            width: 100%;
+            border: none;
+            text-align: center;
+            outline: none;
+            font-size: 15px;
+
+        }
+        .active, .collapsible:hover {
+
+            background-color: #555;
+
+        }
+        .admin_view, .admin_insert, .admin_update, .admin_delete {
+
+            padding: 0 18px;
+            background-color: lightblue;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.2s ease-out;
+
+        }
+    </style>
+    <title>UCS Console</title>
+</head>
+<noscript>
+    <style>
+        .page {display: none;}
+    </style>
+    <div class = "nojsmsg">
+        <p>The console requires Javascript to function.<br>I assure you there's no spyware (at least that I know of).</p>
+    </div>
+</noscript>
 <?php
 
-    session_start();
-    if (!(isset($_SESSION["admin_level"]) && $_SESSION["admin_level"] == 2)) header("Location:../user/login.php");
+    //session_start();
+    //if (!(isset($_SESSION["admin_level"]) && $_SESSION["admin_level"] == 2)) header("Location:../user/login.php");
+    require_once("../user/navbar.php");
     require_once("../../data_src/db_functions.php");
 
     if (array_key_exists("usersButton", $_POST)) $activeTable = "Users";
@@ -36,63 +92,10 @@
     $_SESSION["consoleTable"] = $activeTable;
 
 ?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <style>
-        .tables {
-
-            background-color: white;
-
-        }
-        .console_select {
-
-            cursor: pointer;
-
-        }
-        .console_collap {
-
-            background-color: #777;
-            color: white;
-            cursor: pointer;
-            padding: 18px;
-            width: 100%;
-            border: none;
-            text-align: left;
-            outline: none;
-            font-size: 15px;
-
-        }
-        .active, .collapsible:hover {
-
-            background-color: #555;
-
-        }
-        .admin_view, .admin_insert, .admin_update, .admin_delete {
-
-            padding: 0 18px;
-            background-color: lightblue;
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.2s ease-out;
-
-        }
-    </style>
-    <title>UCS Console</title>
-</head>
-<noscript>
-    <style>
-        .page {display: none;}
-    </style>
-    <div class = "nojsmsg">
-        <p>The console requires Javascript to function.<br>I assure you there's no spyware (at least that I know of).</p>
-    </div>
-</noscript>
 <body>
     <div class = "page">
     <h2>Welcome to the Admin Console!</h2>
+    <br><br>
     <div class = "tables">
     <form method = "post">
         <input type = "submit" name = "usersButton" id = "usersButton" class = "button" value = "Users">
@@ -100,18 +103,17 @@
         <input type = "submit" name = "eventsButton" id = "eventsButton" class = "button" value = "Events">
         <input type = "submit" name = "itemsButton" id = "itemsButton" class = "button" value = "Items">
     </form>
-    <br><p>
-    <?php
+    <p><?php
 
         if ($activeTable == "None") {
 
-            echo "Please select a table.
+            echo "<br>Please select a table.<br><br>
             <form action='../user/logout.php'>
                 <input type = 'submit' value = 'Log Out'>
             </form>";
             exit();
 
-        } else echo "Active table: $activeTable";
+        } else echo "<i>Active table: $activeTable</i><br><br>";
 
     ?></p>
     <button type='button' class='console_collap'>Search</button>
