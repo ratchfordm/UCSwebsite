@@ -43,7 +43,7 @@
             $_SESSION['Verification_code']=$randCode;
             $_SESSION['user_email']=$_POST['user_email'];
             $_SESSION['user_id']=$data[0]['user_id'];
-            if(mail($_POST['user_email'],'The Code to Reset your email','This is your reset code for your Chap UCS account'.$randCode)){
+            if(mail($_POST['user_email'],'The Code to Reset your email','This is your reset code for your Chap UCS account\n Do not Share this code with anyone'.$randCode)){
                 echo '
                 <h2>Input the Code Emailed to you</h2>
                 <form action="resetPassword.php" method="post">

@@ -41,6 +41,7 @@
         </div>
         <!-- Since These are book exlusive, maybe only show if it is a book -->
         <?php
+        print_r($itemData);
         if(array_key_exists('author',$itemData))
             echo "<div class='itemBox'> Author: ".$itemData['author'].'</div>';
         ?>
@@ -51,8 +52,8 @@
             ?>
         </div>
         <?php
-        if(array_key_exists('isbn',$itemData))
-            echo "<div class='itemBox'> ISBN: ".$itemData['isbn'].'</div>';
+        if(array_key_exists('ISBN',$itemData))
+            echo "<div class='itemBox'> ISBN: ".$itemData['ISBN'].'</div>';
         ?>
         
 

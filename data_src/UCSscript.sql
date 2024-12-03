@@ -49,7 +49,7 @@ create table items (
     user_id INT not null,
     category_id INT not null,
     event_id INT not null,
-    ISBN INT,
+    isbn varchar(13),
     title varchar(200) not null,
     author varchar(90),
     price decimal(65,2) not null,

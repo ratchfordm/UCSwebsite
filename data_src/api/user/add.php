@@ -31,12 +31,13 @@ $event_id=$event_id[0]['event_id'];
 
 
 //print_r($_GET);
-$result=$functions->insertInto([$user_id, $_GET['category'], $event_id, $_GET['isbn'], $_GET['title'], $_GET['author'], $_GET['price'], $_GET['year'],$donation ], "items");
+$result=$functions->insertInto([$user_id, $_GET['category'], $event_id, strval($_GET['isbn']), $_GET['title'], $_GET['author'], $_GET['price'], $_GET['year'],$donation ], "items");
 if($result){
     $_SESSION['addMsg']='Item Sucessfully Added';
 }
 else{
     $_SESSION['addMsg']='Network Error, Please try again later';
 }
+
 header('location:../../../web_src/user/addItem.php');
 ?>
