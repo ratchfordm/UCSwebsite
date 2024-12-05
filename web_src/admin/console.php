@@ -45,6 +45,7 @@
     </style>
     <title>UCS Console</title>
 </head>
+<!-- No JavaScript message. Disable the rest of the page if JS is disabled too. -->
 <noscript>
     <style>
         .page {display: none;}
@@ -57,9 +58,11 @@
 
     //session_start();
     //if (!(isset($_SESSION["admin_level"]) && $_SESSION["admin_level"] == 2)) header("Location:../user/login.php");
+    // TODO: navbar doesnt work here because links point to wrong locations. The above two lines enforce login w/o navbar
     require_once("../user/navbar.php");
     require_once("../../data_src/db_functions.php");
-
+    
+    // Check if a table button was clicked, otherwise check if session has a table already
     if (array_key_exists("usersButton", $_POST)) $activeTable = "Users";
     else if (array_key_exists("categoriesButton", $_POST)) $activeTable = "Categories";
     else if (array_key_exists("eventsButton", $_POST)) $activeTable = "Events";
@@ -89,7 +92,7 @@
 
     }
 
-    $_SESSION["consoleTable"] = $activeTable;
+    $_SESSION["consoleTable"] = $activeTable; // Do not delete. I know this line looks redundant, but it isn't.
 
 ?>
 <body>
@@ -97,6 +100,7 @@
     <h2>Welcome to the Admin Console!</h2>
     <br><br>
     <div class = "tables">
+    <!-- Select a table! -->
     <form method = "post">
         <input type = "submit" name = "usersButton" id = "usersButton" class = "button" value = "Users">
         <input type = "submit" name = "categoriesButton" id = "categoriesButton" class = "button" value = "Categories">
@@ -106,6 +110,7 @@
     <p><?php
 
         if ($activeTable == "None") {
+            // If no active table, tell user to pick one and disable rest of page
 
             echo "<br>Please select a table.<br><br>
             <form action='../user/logout.php'>
@@ -116,12 +121,13 @@
         } else echo "<i>Active table: $activeTable</i><br><br>";
 
     ?></p>
-    <button type='button' class='console_collap'>Search</button>
+    <button type='button' class='console_collap'>Search</button><!-- SEARCH SECTION ============================================== -->
     <div class='admin_view'>
         <br>
         <?php
 
             switch ($activeTable) {
+            // If active table is events, print form that allows for searching by date. Otherwise just print the standard form.
 
                 case "Events":
 
@@ -152,12 +158,13 @@
 
         ?>
     </div>
-    <button type='button' class='console_collap'>Insert</button>
+    <button type='button' class='console_collap'>Insert</button><!-- INSERT SECTION ============================================== -->
     <div class='admin_insert'>
         <br>
         <?php
 
             switch ($activeTable) {
+            // Determines which table is active and print a form that matches
 
                 case "Users":
 
@@ -213,7 +220,7 @@
 
         ?><br>
     </div>
-    <button type='button' class='console_collap'>Update</button>
+    <button type='button' class='console_collap'>Update</button><!-- UPDATE SECTION ============================================= -->
     <div class='admin_update'>
         <br>
         <?php
@@ -299,12 +306,13 @@
 
         ?><br>
     </div>
-    <button type='button' class='console_collap'>Delete</button>
+    <button type='button' class='console_collap'>Delete</button><!-- DELETE SECTION ============================================== -->
     <div class='admin_delete'>
         <br>
         <?php
 
             switch ($activeTable) {
+            // If active table is items, change min ID value to 1,000,000
 
                 case "Items":
 
@@ -335,6 +343,7 @@
     <script>
 
         function passVisibility() {
+            // Password visibility toggle
 
             var input = document.getElementById("password");
             if (input.type === "password") input.type = "text";
@@ -343,6 +352,7 @@
         }
 
         function lvlTxt() {
+            // The number next to the adminLevel slider on user insert
 
             var txt = document.getElementById("adLvlTxt");
 
@@ -373,6 +383,7 @@
         }
 
         function usersSelectChange() {
+            // Detect change to selected column in Update and change form datatype to match
 
             var select = document.getElementById("updateCol");
             var input = document.getElementById("updateVal");
@@ -385,6 +396,7 @@
         }
 
         function eventsSelectChange() {
+            // Detect change to selected column in Update and change form datatype to match
 
             var select = document.getElementById("updateCol");
             var input = document.getElementById("updateVal");
@@ -396,6 +408,7 @@
         }
 
         function itemsSelectChange() {
+            // Detect change to selected column in Update and change form datatype to match
 
             var select = document.getElementById("updateCol");
             var input = document.getElementById("updateVal");
@@ -406,6 +419,11 @@
             else input.type = 'number';
 
         }
+
+        /*
+        The rest of this script is responsible for the collapsible sections.
+        A function is bound to each header and executed on click.
+        */
 
         var coll = document.getElementsByClassName('console_collap');
 

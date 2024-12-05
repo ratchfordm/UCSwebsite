@@ -1,32 +1,46 @@
 <?php
 
+    // PHP error settings
+    // Any file that includes this one should get these same settings
+
     ini_set('display_errors', '1');
     ini_set('display_startup_errors', '1');
     error_reporting(E_ALL);
 
     class DatabaseFunctions {
+        /*
+        The class that manages the database connection and several related functions
+        Using this class ensures that only a single connection to the database is used
+        */
 
         private static $db = null;
         
         function __construct() {
+            /* Constructor */
 
             self::connect();
 
         }
 
         private static function connect() {
-            
+            /*
+            Connects to the database.
+            Prevents reconnecting if a connection is already open.
+            */
+
             if (self::$db === null) {
 
                 require_once "db_config.php";
 
                 try {
                     
+                    // Make the connection
                     self::$db = new PDO("mysql:host=$host;dbname=$database", $username, $password);
                     self::$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
                 } catch (PDOException $err) {
 
+                    // If connection fails
                     echo "CONNECTION FAILED: " . $err->getMessage();
                     http_response_code(500);
                     exit();
@@ -38,6 +52,7 @@
         }
 
         public static function getDB() {
+            /* Get current database connection reference */
 
             self::connect();
             return self::$db;
@@ -45,8 +60,10 @@
         }
 
         public static function queryDB(string $stmt) {
-            // All-purpose function that sends any statement to the database
-            // Statements must be parameterized beforehand!
+            /*
+            All-purpose function that sends any statement to the database
+            Statements must be parameterized beforehand!
+            */
 
             self::connect();
 
@@ -59,9 +76,11 @@
         }
 
         public static function insertInto($info, string $table) {
-            // Inserts data given as an array into the specified table
-            // Automatically parameterizes queries
-            // Automatically enforces length constraints
+            /*
+            Inserts data given as an array into the specified table.
+            Automatically parameterizes queries and enforces length constraints.
+            Returns True if SQL *executes* and False if it does not.
+            */
 
             self::connect();
 
@@ -144,7 +163,7 @@
         }
 
         public static function deleteFrom(int $id, string $table) {
-            // Deletes a row from the specified table via primary key
+            /* Deletes a row from the specified table via primary key. */
 
             self::connect();
 
@@ -195,7 +214,11 @@
         }
 
         public static function updateTable(int $id, string $col, $value, string $table) {
-            // Changes a specific piece of information
+            /*
+            Changes a specific piece of information via primary key and column name.
+            Validates column names to (hopefully) prevent injection.
+            Blocks updating primary keys.
+            */
 
             self::connect();
             $valid = False;
@@ -308,15 +331,20 @@
         }
 
         public static function searchDB(string $term, string $table) {
-            // Search the database for a specific piece of information
-            // Note that the following MUST be in the loop for some reason
-            //    $response = $sql->fetchAll();
-            //    array_push($responses, [$response]);
+            /*
+            Search the database for a specific piece of information.
+            Note that the following MUST be IN the loop for some reason:
+                $response = $sql->fetchAll();
+                array_push($responses, [$response]);
+            Returns False if it fails to setup, or an array of responses.
+            */
 
             self::connect();
             $responses = [];
-
+            
             switch (strtolower(substr($table, 0, 1))) {
+            // Determine the target table, and whether the search term is numeric or a string.
+            // Then select the columns that match the search data type.
 
                 case "u":
 
@@ -381,6 +409,7 @@
             }
 
             foreach ($cols as $col) {
+            // Cycle through the selected columns and check for the search term
 
                 try {
 
@@ -417,6 +446,8 @@
 
     }
 
+    // The variable that other files should be using to access the above class
+    // Renaming would require a lot of work
     $functions = new DatabaseFunctions();
 
 ?>
