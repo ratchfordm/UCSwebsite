@@ -4,10 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <!-- Stylesheets -->
     <link href='../css/global.css' rel='stylesheet'>
     <link href='../css/user.css' rel='stylesheet'>
 
     <?php
+    /*
+    Author: Asher Wayde
+    This displays the detailed info for the item and allows you to edit the details
+    */
+        // get the data from the database for a single item
         require_once "../../data_src/api/user/read.php";
         $itemData=readSingleItem($_GET['id']);
     ?>
@@ -15,8 +21,10 @@
 </head>
 <body>
     <?php
+    // including the navbar
     require_once "navbar.php";
     ?>
+    <!-- TODO: Add functionality to the editing page -->
     <div class='itemDisplay'>
         <div class='itemBox'>
             Your Item: 

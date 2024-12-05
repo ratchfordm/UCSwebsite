@@ -1,11 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link href='../css/global.css' rel='stylesheet'>
+    
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FAQ</title>
+    <!-- Stylesheets -->
+    <link href='../css/global.css' rel='stylesheet'>
     <style>
+        /* TODO: Add these rules to a stylesheet*/
         td {
 
             padding: 15px;
@@ -25,7 +28,10 @@
 </head>
 <body>
     <?php
-
+        /*
+        Author: John McGovern, Asher Wayde
+        This will provide the recently asked questions from the old site to the new site.
+        */
         require_once "navbar.php";
 
         $lastDay = "Tuesday, May 6th, 2025";
@@ -33,6 +39,7 @@
 
     ?>
     <h2>Frequently Asked Questions</h2><br>
+    <!-- TODO: Reveiw these to see if they're still relevent -->
     <table>
         <tr>
             <td class = 'question'>Do I have to sell in order to be able to shop?</td>
@@ -186,6 +193,7 @@
         </tr>
     </table>
     <?php
+    // adding the footer
     require_once "../footer.php";
     ?>
 </body>

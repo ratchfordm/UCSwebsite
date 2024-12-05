@@ -3,24 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Add Items</title>
+
+<!-- Stylesheets -->
     <link href='../css/global.css' rel='stylesheet'>
     <link href='../css/user.css' rel='stylesheet'>
-    <title>Add Items</title>
+    
+<!-- Javascript -->
     <script src='js/isbnLookup.js'></script>
 </head>
 <body>
     <?php
+    /*
+    Author: Asher Wayde
+    This page includes the form to add items and then passes them to the add.php file to add the items to the database under that user
+    */
+    // Adding the Navbar
     require_once "navbar.php";
     ?>
     <h2>Please tell us some information about your item</h2>
     <?php
+    // This is for the add completetion or failure message after the item is processed
     if(key_exists('addMsg',$_SESSION)){
         echo "<p>".$_SESSION['addMsg']."</p>";
         $_SESSION['addMsg']=null;
     }
     ?>
+    <!-- This is the form for inputing an item  -->
     <form action="../../data_src/api/user/add.php" class='inputForm'>
-        
         <div>
             <label for='isbn'>ISBN</label>
             <input name='isbn' type='number' id='isbn' min='0' value=''>
@@ -33,6 +44,7 @@
                 </span>
             </div>   
         </div>
+    <!-- This is for if the ISBN lookup fails -->
         <p id='apiErr' class='Err'></p>
         <div>
             <label for='title' >Title <span class='req'>*</span></label>
@@ -93,6 +105,7 @@
             <label for='category'>Category <span class='req'>*</span></span>
             <select name='category' id='category' required>
                 <?php
+                // this code dynamically reads the categories from the database, and add them to option values in the form
                 require_once "../../data_src/api/user/read.php";
                 $data=readCats();
                 
@@ -119,6 +132,7 @@
 
     </form>
     <?php
+    // this adds the footer to the page
     require_once "../footer.php";
     ?>
 </body>

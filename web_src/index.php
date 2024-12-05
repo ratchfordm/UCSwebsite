@@ -7,5 +7,9 @@
 </head>
 </html>
 <?php
-
+    /*
+    Author: John McGovern
+    This redirects towards the user login page
+    */
     header("Location:user/login.php");
+?>

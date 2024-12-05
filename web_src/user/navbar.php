@@ -1,3 +1,8 @@
+<!--
+Author: Asher Wayde
+This file is the navbar for the whole website, and enfocorces login status
+-->
+
 <nav>
     <a class='noNav' href='https://conv.chaponline.com'>
         <img src='../images/UCSlogo.png' class='navLogo' alt='UCS Logo'>
@@ -38,16 +43,18 @@
     </li>
     
 <?php
+// This enforces that the user is logged in
 session_start();
 if(!$_SESSION['logged_in'])
     header('location:login.php');
 
-    if($_SESSION['admin_level'])
-        echo "<li>
-    <div class='navButtonContainer'>
-            <a class='navButton' href='../admin/console.php'>Admin Console</a>
-        </div>
-    </li>";
+    // if user is an admin show the link to the admin console
+if($_SESSION['admin_level'])
+    echo "<li>
+              <div class='navButtonContainer'>
+              <a class='navButton' href='../admin/console.php'>Admin Console</a>
+          </div>
+          </li>";
 ?>
     
 </ul>

@@ -4,10 +4,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registration Page</title>
+
+    <!-- Stylesheets --> 
     <link href="../css/global.css" rel="stylesheet">
     <link href='../css/user.css' rel='stylesheet'>
+
+    <!-- Javascript -->
     <script src='js/passEnforce.js'></script>
+    
     <?php
+    /*
+    Author: Asher Wayde
+    This file has the form for registering a user account in the system. It does not execute the account creation
+    */
+
+    // if you are logged in, kick you to the login page
     session_start();
     if(array_key_exists('logged_in',$_SESSION)&& $_SESSION['logged_in'])
         header("location:displayItems.php");
@@ -19,11 +30,13 @@
     </div>
     <h2>Register</h2>
     <?php
+    // if there is a registration error, display it here
     if(array_key_exists('ErrCode',$_SESSION)&& $_SESSION['ErrCode']){
         echo "<p class='Err'>".$_SESSION['ErrCode']."</p>";
         $_SESSION['ErrCode']=null;
     }
     ?>
+    <!-- This is the registration form -->
     <form class='loginForm' action="../../data_src/api/login/add.php" method="post">
         <div>
             <label for='first_name'>Enter Your First Name</label>
@@ -56,6 +69,7 @@
     </p>
 </body>
 <?php
+    // adding the footer
     require_once "../footer.php";
 ?>
 </html>
