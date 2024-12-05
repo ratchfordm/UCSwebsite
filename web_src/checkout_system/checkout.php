@@ -1,6 +1,6 @@
 <?php
     session_start();
-    if(!$_SESSION['log_in']) header('location:login.php');
+    if(!$_SESSION['log_in']) header('location:login.php'); // if the user is not logged in, go to login page
 
     ini_set('display_errors', '1');
     ini_set('display_startup_errors', '1');
@@ -63,11 +63,7 @@
                     $sql = "UPDATE items SET sold = 1 WHERE item_id = ?";
                     $stmt = $db->prepare($sql);
                     $stmt->execute([$cartItems[$i]['item_id']]);
-
             }
-            
-            
-
         }
         ?>
         </tbody>
@@ -78,7 +74,6 @@
 
     <!-- button to go back to the cart -->
     <a href="clearCart.php" class="button">Back to Cart</a>
-
 
     <?php
         require_once "../footer.php";

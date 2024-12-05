@@ -1,6 +1,6 @@
 <?php
     session_start();
-    if(!$_SESSION['log_in']) header('location:login.php');
+    if(!$_SESSION['log_in']) header('location:login.php'); // if the user is not logged in, go to login page
 
     ini_set('display_errors', '1');
     ini_set('display_startup_errors', '1');
@@ -21,7 +21,6 @@
 
     if (!empty($_POST['item_id'])) { // if form is filled with item_id, continue
         
-
             $item_id = $_POST['item_id']; // set variable item_id with item id from form
 
             $sql = "SELECT item_id, title, price, sold FROM items WHERE sold = 0 AND item_id = ?";
@@ -45,7 +44,6 @@
     
     }
     ?>
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -80,15 +78,12 @@
 
     <form method="POST" action="cart.php" id="form">
         <input type="text" id="itemId" name="item_id" placeholder="Item ID" maxlength="7" oninput="checkLength(this)"  autofocus required>
-        <!-- <button type="submit">Add to Cart</button> -->
     </form>
-
-    
 
     <table id="shopping_cart">
         <!-- Table Head -->
         <thead>
-            <tr>
+            <tr> 
                 <th scope="col">ID</th>
                 <th scope="col">Name</th>
                 <th scope="col">Price $</th>
@@ -110,24 +105,18 @@
                 }
         }
         ?>
-
-
         </tbody>
-
     </table>   
 
     <div id="itemExist"><?php echo $message; ?></div>
 
-    <div id="clear"><a href="clearCart.php" class="button">Clear Cart</a></div>
+    <div id="clear"><a href="clearCart.php" class="button">Clear Cart</a></div> <!-- clear cart button -->
     
-
-    <div id="checkout"><a href="checkout.php" class="button">Checkout HERE</a></div>
+    <div id="checkout"><a href="checkout.php" class="button">Checkout HERE</a></div> <!-- checkout button --> 
     
     <?php
         require_once "../footer.php";
     ?>
-
-
 </body>
 </html>
 
