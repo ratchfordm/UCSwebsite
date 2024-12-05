@@ -13,7 +13,7 @@
     <h2>Operator Login</h2>
     <form action="authenticate.php" method="post">
         <label for="operator_code">Operator Code:</label><br>
-        <input type="text" id="operator_code" name="operator_code" required><br><br>
+        <input type="text" id="operator_code" name="operator_code" required><br><br> 
         <input type="submit" value="Submit">
     </form>
 </body>
